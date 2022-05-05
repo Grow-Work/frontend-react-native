@@ -15,7 +15,7 @@ const SignupScreen = () => {
                 onWillFocus={clearErrorMessage}
             />
         <AuthForm 
-            header="Sign Up for Tracker"
+            header="Sign Up"
             errorMessage={state.errorMessage}
             buttonText="Sign Up"
             onSubmit={signup}

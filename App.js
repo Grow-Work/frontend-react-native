@@ -5,21 +5,21 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import AccountScreen from './src/screens/AccountScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
-import TrackCreateScreen from './src/screens/TrackCreateScreen';
-import TrackDetailScreen from './src/screens/TrackDetailScreen';
-import TrackListScreen from './src/screens/TrackListScreen';
+import ProfileCreateScreen from './src/screens/ProfileCreateScreen';
+import ProfileDetailScreen from './src/screens/ProfileDetailScreen';
+import ProfileListScreen from './src/screens/ProfileListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
 import {FontAwesome} from '@expo/vector-icons'
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 
-const trackListFlow = createStackNavigator({
-  TrackList: TrackListScreen,
-  TrackDetail: TrackDetailScreen,
+const ProfileListFlow = createStackNavigator({
+  ProfileList: ProfileListScreen,
+  ProfileDetail: ProfileDetailScreen,
 })
 
-trackListFlow.navigationOptions = {
-  title: 'Tracks',
+ProfileListFlow.navigationOptions = {
+  title: 'Profiles',
   tabBarIcon: <FontAwesome name="th-list" size={20} />
 }
 
@@ -30,8 +30,8 @@ const switchNavigator = createSwitchNavigator({
     Signin: SigninScreen,
   }),
   mainFlow: createBottomTabNavigator({
-    trackListFlow,
-    TrackCreate: TrackCreateScreen,
+    ProfileListFlow,
+    ProfileCreate: ProfileCreateScreen,
     Account: AccountScreen,
   }),
 });

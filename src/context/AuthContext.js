@@ -1,5 +1,5 @@
 import createDataContext from "./createDataContext";
-import trackerApi from '../api/tracker'
+import serverConnectApi from '../api/serverConnect'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { navigate } from "../navigationRef";
 
@@ -23,7 +23,7 @@ const tryLocalSignin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token')
     if (token) {
         dispatch({type:'signin', payload: token})
-        navigate('TrackList')
+        navigate('ProfileList')
     } else {
         navigate('Signup')
     }
@@ -35,10 +35,10 @@ const clearErrorMessage = dispatch => () => {
 
 const signup = dispatch => async ({email, password}) => {
         try {
-            const response = await trackerApi.post('/auth/signup', {email, password})
+            const response = await serverConnectApi.post('/auth/signup', {email, password})
             await AsyncStorage.setItem('token', response.data.token)
             dispatch({type: 'signin', payload: response.data.token})
-            navigate('TrackList')
+            navigate('ProfileList')
         } catch (error) {
             dispatch({type: 'add_error', payload: "Email already registered."})
         }
@@ -46,10 +46,10 @@ const signup = dispatch => async ({email, password}) => {
 
 const signin = dispatch => async ({email, password}) => {
         try {
-            const response = await trackerApi.post('/auth/signin', {email, password})
+            const response = await serverConnectApi.post('/auth/signin', {email, password})
             await AsyncStorage.setItem('token', response.data.token)
             dispatch({type: 'signin', payload: response.data.token})
-            navigate('TrackList')
+            navigate('ProfileList')
         } catch (error) {
             dispatch({type: 'add_error', payload: "In correct email or password."})
         }
