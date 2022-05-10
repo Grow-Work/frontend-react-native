@@ -29,6 +29,8 @@ The purpose of this app is to help those just getting started in a new field by 
 
 • Sign up / sign in
 
+• Sign out
+
 • Create general profile
 
 • Update profile
