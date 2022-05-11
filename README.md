@@ -1,7 +1,5 @@
 # Grow: Work
-### An app designed to connect new grads / transitioning professionals and startups, helping them to grow together.
-
-The purpose of this app is to help those just getting started in a new field by connecting budding professionals with growing companies in the hopes that everyone can get the expierence and help they need to succeed.
+ React Native mobile app.
 
 ## Current Live Version
 
@@ -9,9 +7,9 @@ The purpose of this app is to help those just getting started in a new field by 
 
 ## Related Repos
 
-[Desktop Web App](https://github.com/Dionne-Stratton/grow-work-frontend-react)
+[Desktop Web App](https://github.com/Grow-Work/frontend-react-desktop)
 
-[Mongo Database and Server](https://github.com/Dionne-Stratton/grow-work-backend)
+[Mongo Database and Server](https://github.com/Grow-Work/backend-node-mongoDB)
 
 ## Tech Stack - subject to change
 
@@ -23,7 +21,7 @@ The purpose of this app is to help those just getting started in a new field by 
 
 • JavaScript
 
-## Current MVP
+## MVP
 
 ### All Users
 
@@ -39,31 +37,17 @@ The purpose of this app is to help those just getting started in a new field by 
 
 • Persist filters / searches
 
-• Light / Dark mode ?
-
 ### Companies
 
-• Post job listings
+• View all companies
 
-• Edit job listings
+• Filter companies based on tags (location, skills, etc.)
 
-• Delete job listings
+### Professionals
 
 • View all professionals
 
 • Filter professionals based on tags (location, skills, etc.)
-
-### Professionals
-
-• View all job listings
-
-• Filter job listings based on tags (location, company, role, etc.)
-
-• Recieve an alert based on tags (location, company, role, etc.)
-
-• Save job listings
-
-• Delete saved job listings
 
 ## Instalation and Starting
 
