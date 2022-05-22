@@ -3,7 +3,7 @@
 
 ## Current Live Version
 
-[QR Code](https://expo.dev/@beloved2/grow-work)
+To be deployed
 
 ## Related Repos
 
