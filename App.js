@@ -11,7 +11,7 @@ import ProfileListScreen from './src/screens/ProfileListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
-import {MaterialIcons, FontAwesome5} from '@expo/vector-icons'
+import {MaterialIcons, MaterialCommunityIcons, FontAwesome5} from '@expo/vector-icons'
 import CompanyListScreen from './src/screens/CompanyListScreen';
 import CompanyDetailScreen from './src/screens/CompanyDetailScreen';
 import JobListScreen from './src/screens/JobListScreen';
@@ -24,7 +24,7 @@ const ProfileListFlow = createStackNavigator({
 
 ProfileListFlow.navigationOptions = {
   title: 'Newbs',
-    tabBarIcon: <MaterialIcons name="people" size={20} />
+    tabBarIcon: <MaterialCommunityIcons name="account-group-outline" size={20} />
 }
 
 const CompanyListFlow = createStackNavigator({
@@ -44,7 +44,7 @@ const AccountFlow = createStackNavigator({
 
 AccountFlow.navigationOptions = {
   title: 'Account',
-  tabBarIcon: <MaterialIcons name="account-circle" size={20} />
+  tabBarIcon: <MaterialCommunityIcons name="account-circle-outline" size={20} />
 }
 
 const JobListFlow = createStackNavigator({
@@ -54,7 +54,7 @@ const JobListFlow = createStackNavigator({
 
 JobListFlow.navigationOptions = {
   title: 'Jobs',
-    tabBarIcon: <MaterialIcons name="work" size={20} />
+    tabBarIcon: <MaterialIcons name="work-outline" size={20} />
 }
 
 const switchNavigator = createSwitchNavigator({
