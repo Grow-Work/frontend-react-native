@@ -1,7 +1,20 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { SafeAreaView, StyleSheet, Text, Button} from 'react-native'
+import serverConnectApi from '../api/serverConnect'
 
 const JobListScreen = ({navigation}) => {
+
+    const [jobList, setJobList] = useState([])
+
+    useEffect(() => {
+        serverConnectApi
+          .get('/jobs')
+          .then((res) => setJobList(res.data))
+          .catch((err) => console.log(err, "it has an error"));
+      }, []);
+
+      console.log(jobList)
+
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <Text style={styles.header} >Job List Screen</Text>
