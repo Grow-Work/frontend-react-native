@@ -10,8 +10,12 @@ import ProfileDetailScreen from './src/screens/ProfileDetailScreen';
 import ProfileListScreen from './src/screens/ProfileListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
-import {FontAwesome} from '@expo/vector-icons'
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
+import {MaterialIcons, FontAwesome5} from '@expo/vector-icons'
+import CompanyListScreen from './src/screens/CompanyListScreen';
+import CompanyDetailScreen from './src/screens/CompanyDetailScreen';
+import JobListScreen from './src/screens/JobListScreen';
+import JobDetailScreen from './src/screens/JobDetailScreen';
 
 const ProfileListFlow = createStackNavigator({
   ProfileList: ProfileListScreen,
@@ -19,8 +23,38 @@ const ProfileListFlow = createStackNavigator({
 })
 
 ProfileListFlow.navigationOptions = {
-  title: 'Profiles',
-  tabBarIcon: <FontAwesome name="th-list" size={20} />
+  title: 'Newbs',
+    tabBarIcon: <MaterialIcons name="people" size={20} />
+}
+
+const CompanyListFlow = createStackNavigator({
+  CompanyList: CompanyListScreen,
+  CompanyDetail: CompanyDetailScreen,
+})
+
+CompanyListFlow.navigationOptions = {
+  title: 'Companies',
+  tabBarIcon: <FontAwesome5 name="building" size={20} />
+}
+
+const AccountFlow = createStackNavigator({
+  Account: AccountScreen,
+  ProfileCreate: ProfileCreateScreen
+})
+
+AccountFlow.navigationOptions = {
+  title: 'Account',
+  tabBarIcon: <MaterialIcons name="account-circle" size={20} />
+}
+
+const JobListFlow = createStackNavigator({
+  JobList: JobListScreen,
+  JobDetail: JobDetailScreen
+})
+
+JobListFlow.navigationOptions = {
+  title: 'Jobs',
+    tabBarIcon: <MaterialIcons name="work" size={20} />
 }
 
 const switchNavigator = createSwitchNavigator({
@@ -30,9 +64,10 @@ const switchNavigator = createSwitchNavigator({
     Signin: SigninScreen,
   }),
   mainFlow: createBottomTabNavigator({
+    AccountFlow,
+    JobListFlow,
     ProfileListFlow,
-    ProfileCreate: ProfileCreateScreen,
-    Account: AccountScreen,
+    CompanyListFlow,
   }),
 });
 

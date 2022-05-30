@@ -6,6 +6,7 @@ const AuthForm = ({header, errorMessage, onSubmit, buttonText}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [account_type, setAccountType] = useState('')
     
     return (
         <>
@@ -25,10 +26,19 @@ const AuthForm = ({header, errorMessage, onSubmit, buttonText}) => {
             autoCorrect={false}
             secureTextEntry
             />
+        <Input 
+            label="Account Type" 
+            value={account_type} 
+            onChangeText={setAccountType} 
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry
+            />
+
         <Text style={styles.errorMessage} >{errorMessage}</Text>
         <Button 
             title={buttonText}
-            onPress={() => onSubmit({email, password})}
+            onPress={() => onSubmit({email, password, account_type})}
         />
         </>
     )

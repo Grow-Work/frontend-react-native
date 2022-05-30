@@ -33,14 +33,14 @@ const clearErrorMessage = dispatch => () => {
     dispatch({type: 'clear_error_message'})
 }
 
-const signup = dispatch => async ({email, password}) => {
+const signup = dispatch => async ({email, password, account_type}) => {
         try {
-            const response = await serverConnectApi.post('/auth/signup', {email, password})
+            const response = await serverConnectApi.post('/auth/signup', {email, password, account_type})
             await AsyncStorage.setItem('token', response.data.token)
             dispatch({type: 'signin', payload: response.data.token})
-            navigate('ProfileList')
+            navigate('Account')
         } catch (error) {
-            dispatch({type: 'add_error', payload: "Email already registered."})
+            dispatch({type: 'add_error', payload: "Sign up failed."})
         }
     }
 
@@ -49,7 +49,7 @@ const signin = dispatch => async ({email, password}) => {
             const response = await serverConnectApi.post('/auth/signin', {email, password})
             await AsyncStorage.setItem('token', response.data.token)
             dispatch({type: 'signin', payload: response.data.token})
-            navigate('ProfileList')
+            navigate('Account')
         } catch (error) {
             dispatch({type: 'add_error', payload: "In correct email or password."})
         }

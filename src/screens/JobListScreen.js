@@ -1,23 +1,22 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, Text, Button, Linking} from 'react-native'
-import {MaterialIcons} from '@expo/vector-icons'
+import { SafeAreaView, StyleSheet, Text, Button} from 'react-native'
 
-const ProfileListScreen = ({navigation}) => {
+const JobListScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >Newb List Screen</Text>
+        <Text style={styles.header} >Job List Screen</Text>
         <Text style={styles.text} >This is some other info about this screen.</Text>
         <Text></Text>
         <Button 
             title="details"
-            onPress={() => navigation.navigate('ProfileDetail')}
+            onPress={() => navigation.navigate('JobDetail')}
         />
         </SafeAreaView>
     )
 }
 
-ProfileListScreen.navigationOptions = {
-    title: 'Newbs'
+JobListScreen.navigationOptions = {
+    title: 'Jobs',
 }
 
 const styles = StyleSheet.create({
@@ -32,4 +31,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ProfileListScreen
+export default JobListScreen

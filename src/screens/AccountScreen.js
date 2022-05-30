@@ -1,12 +1,11 @@
 import React, {useContext} from 'react'
 import { StyleSheet, Text } from 'react-native'
-import {MaterialIcons} from '@expo/vector-icons'
 import {Button} from 'react-native-elements'
 import { Context as AuthContext } from '../context/AuthContext'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 
-const AccountScreen = () => {
+const AccountScreen = ({navigation}) => {
 
     const {signout} = useContext(AuthContext)
 
@@ -16,6 +15,11 @@ const AccountScreen = () => {
         <Text style={styles.header} >Account Screen</Text>
         <Text style={styles.text} >This is some other info about this screen.</Text>
         <Text></Text>
+        <Button 
+            title="Create Profile"
+            onPress={() => navigation.navigate('ProfileCreate')}
+        />
+        <Text></Text>
         <Button style={styles.button} title="Sign Out" onPress={signout} />
         </SafeAreaView>
         )
@@ -23,7 +27,6 @@ const AccountScreen = () => {
 
 AccountScreen.navigationOptions = {
     title: 'Account',
-    tabBarIcon: <MaterialIcons name="account-circle" size={20} />
 }
 
 const styles = StyleSheet.create({
