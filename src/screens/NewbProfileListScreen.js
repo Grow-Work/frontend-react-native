@@ -2,7 +2,7 @@ import React from 'react'
 import { SafeAreaView, StyleSheet, Text, Button, Linking} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons'
 
-const ProfileListScreen = ({navigation}) => {
+const NewbProfileListScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <Text style={styles.header} >Newb List Screen</Text>
@@ -16,7 +16,7 @@ const ProfileListScreen = ({navigation}) => {
     )
 }
 
-ProfileListScreen.navigationOptions = {
+NewbProfileListScreen.navigationOptions = {
     title: 'Newbs'
 }
 
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ProfileListScreen
+export default NewbProfileListScreen

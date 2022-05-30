@@ -7,7 +7,7 @@ import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import ProfileCreateScreen from './src/screens/ProfileCreateScreen';
 import ProfileDetailScreen from './src/screens/ProfileDetailScreen';
-import ProfileListScreen from './src/screens/ProfileListScreen';
+import NewbProfileListScreen from './src/screens/NewbProfileListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
@@ -17,12 +17,12 @@ import CompanyDetailScreen from './src/screens/CompanyDetailScreen';
 import JobListScreen from './src/screens/JobListScreen';
 import JobDetailScreen from './src/screens/JobDetailScreen';
 
-const ProfileListFlow = createStackNavigator({
-  ProfileList: ProfileListScreen,
+const NewbProfileListFlow = createStackNavigator({
+  NewbProfileList: NewbProfileListScreen,
   ProfileDetail: ProfileDetailScreen,
 })
 
-ProfileListFlow.navigationOptions = {
+NewbProfileListFlow.navigationOptions = {
   title: 'Newbs',
     tabBarIcon: <Ionicons name="people-outline" size={20} />
 }
@@ -66,7 +66,7 @@ const switchNavigator = createSwitchNavigator({
   mainFlow: createBottomTabNavigator({
     AccountFlow,
     JobListFlow,
-    ProfileListFlow,
+    NewbProfileListFlow,
     CompanyListFlow,
   }),
 });
