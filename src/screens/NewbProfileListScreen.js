@@ -10,7 +10,7 @@ const NewbProfileListScreen = ({navigation}) => {
         <Text></Text>
         <Button 
             title="details"
-            onPress={() => navigation.navigate('ProfileDetail')}
+            onPress={() => navigation.navigate('NewbProfileDetail')}
         />
         </SafeAreaView>
     )

@@ -6,7 +6,7 @@ import AccountScreen from './src/screens/AccountScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import ProfileCreateScreen from './src/screens/ProfileCreateScreen';
-import ProfileDetailScreen from './src/screens/ProfileDetailScreen';
+import NewbProfileDetailScreen from './src/screens/NewbProfileDetailScreen';
 import NewbProfileListScreen from './src/screens/NewbProfileListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
@@ -19,7 +19,7 @@ import JobDetailScreen from './src/screens/JobDetailScreen';
 
 const NewbProfileListFlow = createStackNavigator({
   NewbProfileList: NewbProfileListScreen,
-  ProfileDetail: ProfileDetailScreen,
+  NewbProfileDetail: NewbProfileDetailScreen,
 })
 
 NewbProfileListFlow.navigationOptions = {
