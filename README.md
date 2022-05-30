@@ -1,9 +1,10 @@
 # Grow: Work
- React Native mobile app.
+
+React Native mobile app.
 
 ## Current Live Version
 
-[QR Code](https://expo.dev/@beloved2/grow-work)
+to be deployed
 
 ## Related Repos
 
@@ -17,37 +18,45 @@
 
 • Styled Components / CSS
 
-• Redux - eventually
-
 • JavaScript
 
 ## MVP
 
-### All Users
+### All Users Acions
 
-• Sign up / sign in
+- Sign up / sign in
 
-• Sign out
+- Sign out
 
-• Create general profile
+- Profile CRUD operations
 
-• Update profile
+- Persist filters / searches
 
-• Delete profile
+### Company Account Actions
 
-• Persist filters / searches
+- Job listing CRUD operations
 
-### Companies
+### Newb Account Actions
+
+- Save job / delete save
+
+### Company Profiles Sreen
 
 • View all companies
 
 • Filter companies based on tags (location, skills, etc.)
 
-### Professionals
+### Newb Profiles Screen
 
 • View all professionals
 
 • Filter professionals based on tags (location, skills, etc.)
+
+### Jobs Sreen
+
+• View all jobs
+
+• Filter jobs based on tags (location, skills, etc.)
 
 ## Instalation and Starting
 
