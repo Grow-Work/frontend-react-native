@@ -6,13 +6,26 @@ React Native mobile app.
 
 to be deployed
 
+## Quicklinks
+
+* [Related Repos](#related-repos)
+* [Tech Stack](#tech-stack)
+* [Project MVP Features](#project-mvp-features)
+    * [All Users Actions](#all-users-actions)
+    * [Company Account Actions](#company-account-actions)
+    * [Newb Account Actions](#newb-account-actions)
+    * [Company Profiles Screen](#company-profiles-screen)
+    * [Newb Profiles Screen](#newb-profiles-screen)
+    * [Jobs Screen](#jobs-screen)
+* [Instalation and Starting](#instalation-and-starting)
+
 ## Related Repos
 
 [Desktop Web App](https://github.com/Grow-Work/frontend-react-desktop)
 
 [Mongo Database and Server](https://github.com/Grow-Work/backend-node-mongoDB)
 
-## Tech Stack - subject to change
+## Tech Stack
 
 • React / React Native
 
@@ -20,9 +33,9 @@ to be deployed
 
 • JavaScript
 
-## MVP
+## Project MVP Features
 
-### All Users Acions
+### All Users Actions
 
 - Sign up / sign in
 
@@ -40,7 +53,7 @@ to be deployed
 
 - Save job / delete save
 
-### Company Profiles Sreen
+### Company Profiles Screen
 
 • View all companies
 
@@ -52,7 +65,7 @@ to be deployed
 
 • Filter professionals based on tags (location, skills, etc.)
 
-### Jobs Sreen
+### Jobs Screen
 
 • View all jobs
 
