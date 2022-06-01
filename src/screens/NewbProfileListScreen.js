@@ -3,6 +3,18 @@ import { SafeAreaView, StyleSheet, Text, Button, Linking} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons'
 
 const NewbProfileListScreen = ({navigation}) => {
+
+    const [newbsList, setNewbsList] = useState([])
+
+    useEffect(() => {
+        serverConnectApi
+          .get('/jobs')
+          .then((res) => setNewbsList(res.data))
+          .catch((err) => console.log(err, "it has an error"));
+      }, []);
+
+      console.log(newbsList)
+
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <Text style={styles.header} >Newb List Screen</Text>
