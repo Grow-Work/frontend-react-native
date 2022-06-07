@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import ProfileCreateScreen from './ProfileCreateScreen';
-import AccountScreen from './AccountScreen';
+import ProfileScreen from './ProfileScreen';
 import AccountJobsScreen from './AccountJobsScreen';
 import JobCreateScreen from './JobCreateScreen';
 import SettingsScreen from './SettingsScreen';
@@ -21,7 +21,7 @@ MyDrawer.navigationOptions = {
 function Drawers() {
   return (
     <Drawer.Navigator useLegacyImplementation>
-        <Drawer.Screen name="Profile" component={AccountScreen} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} />
         <Drawer.Screen name="Create Profile" component={ProfileCreateScreen} />
         <Drawer.Screen name="Jobs" component={AccountJobsScreen} />
         {account_type === "company"? <Drawer.Screen name="Add Job" component={JobCreateScreen} /> : null}
