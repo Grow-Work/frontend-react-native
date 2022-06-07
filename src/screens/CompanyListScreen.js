@@ -1,5 +1,7 @@
-import React from 'react'
-import { SafeAreaView, StyleSheet, Text, Button} from 'react-native'
+import React, {useState, useEffect} from 'react'
+import { SafeAreaView, StyleSheet, Text, Button, Linking} from 'react-native'
+import {MaterialIcons} from '@expo/vector-icons'
+import serverConnectApi from '../api/serverConnect'
 
 const CompanyListScreen = ({navigation}) => {
 
@@ -7,12 +9,12 @@ const CompanyListScreen = ({navigation}) => {
 
     useEffect(() => {
         serverConnectApi
-          .get('/jobs')
+          .get('/companies')
           .then((res) => setCompaniesList(res.data))
           .catch((err) => console.log(err, "it has an error"));
       }, []);
 
-      console.log(companiesList)
+      console.log("company profiles",companiesList)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>

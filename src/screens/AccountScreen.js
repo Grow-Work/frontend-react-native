@@ -22,12 +22,17 @@ const AccountScreen = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >{accountProfile.company_name}</Text>
-        <Text style={styles.text} >This is some other info about this screen.</Text>
+        <Text style={styles.header} >{accountProfile.name}</Text>
+        <Text style={styles.text} >{accountProfile.location}</Text>
         <Text></Text>
         <Button 
             title="Create Profile"
             onPress={() => navigation.navigate('ProfileCreate')}
+        />
+        <Text></Text>
+        <Button 
+            title="Add Job"
+            onPress={() => navigation.navigate('JobCreate')}
         />
         <Text></Text>
         <Button style={styles.button} title="Sign Out" onPress={signout} />
@@ -42,12 +47,15 @@ AccountScreen.navigationOptions = {
 const styles = StyleSheet.create({
     header: {
         fontSize: 30,
-        marginBottom: 50
+        marginBottom: 20
     },
     container: {
         margin: 15,
         flex: 1,
         marginTop: 50
+    },
+    text: {
+        fontSize: 20
     }
 })
 

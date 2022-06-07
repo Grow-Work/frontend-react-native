@@ -16,6 +16,7 @@ import CompanyListScreen from './src/screens/CompanyListScreen';
 import CompanyDetailScreen from './src/screens/CompanyDetailScreen';
 import JobListScreen from './src/screens/JobListScreen';
 import JobDetailScreen from './src/screens/JobDetailScreen';
+import JobCreateScreen from './src/screens/JobCreateScreen';
 
 const NewbProfileListFlow = createStackNavigator({
   NewbProfileList: NewbProfileListScreen,
@@ -39,7 +40,8 @@ CompanyListFlow.navigationOptions = {
 
 const AccountFlow = createStackNavigator({
   Account: AccountScreen,
-  ProfileCreate: ProfileCreateScreen
+  ProfileCreate: ProfileCreateScreen,
+  JobCreate: JobCreateScreen
 })
 
 AccountFlow.navigationOptions = {

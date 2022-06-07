@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { SafeAreaView, StyleSheet, Text, Button, Linking} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons'
+import serverConnectApi from '../api/serverConnect'
 
 const NewbProfileListScreen = ({navigation}) => {
 
@@ -8,12 +9,12 @@ const NewbProfileListScreen = ({navigation}) => {
 
     useEffect(() => {
         serverConnectApi
-          .get('/jobs')
+          .get('/professionals')
           .then((res) => setNewbsList(res.data))
           .catch((err) => console.log(err, "it has an error"));
       }, []);
 
-      console.log(newbsList)
+      console.log("newb profiles:",newbsList)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>

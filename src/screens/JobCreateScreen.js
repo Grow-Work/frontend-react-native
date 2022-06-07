@@ -2,18 +2,17 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import {FontAwesome} from '@expo/vector-icons'
 
-const ProfileCreateScreen = () => {
+const JobCreateScreen = () => {
     return (
         <View style={styles.container}>
-        <Text style={styles.header} >Profile Create Screen</Text>
+        <Text style={styles.header} >Job Create Screen</Text>
         <Text style={styles.text} >This is some other info about this screen.</Text>
         </View>
         )
 }
 
-ProfileCreateScreen.navigationOptions = {
-    title: 'Create Profile',
-    tabBarIcon: <FontAwesome name="plus" size={20} />
+JobCreateScreen.navigationOptions = {
+    title: 'Add Job',
 }
 
 
@@ -30,4 +29,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ProfileCreateScreen
+export default JobCreateScreen
