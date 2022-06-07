@@ -6,7 +6,7 @@ const JobCreateScreen = () => {
     return (
         <View style={styles.container}>
         <Text style={styles.header} >Job Create Screen</Text>
-        <Text style={styles.text} >This is some other info about this screen.</Text>
+        <Text style={styles.text} >This element is conditionally rendered.</Text>
         </View>
         )
 }

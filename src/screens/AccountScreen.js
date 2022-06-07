@@ -25,16 +25,6 @@ const AccountScreen = ({navigation}) => {
         <Text style={styles.header} >{accountProfile.name}</Text>
         <Text style={styles.text} >{accountProfile.location}</Text>
         <Text></Text>
-        <Button 
-            title="Create Profile"
-            onPress={() => navigation.navigate('ProfileCreate')}
-        />
-        <Text></Text>
-        <Button 
-            title="Add Job"
-            onPress={() => navigation.navigate('JobCreate')}
-        />
-        <Text></Text>
         <Button style={styles.button} title="Sign Out" onPress={signout} />
         </SafeAreaView>
         )

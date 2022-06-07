@@ -6,7 +6,7 @@ const ProfileCreateScreen = () => {
     return (
         <View style={styles.container}>
         <Text style={styles.header} >Profile Create Screen</Text>
-        <Text style={styles.text} >This is some other info about this screen.</Text>
+        <Text style={styles.text} >This screen will be conditionally rendered.</Text>
         </View>
         )
 }

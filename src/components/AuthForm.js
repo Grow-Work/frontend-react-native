@@ -24,7 +24,6 @@ const AuthForm = ({header, errorMessage, onSubmit, buttonText}) => {
             onChangeText={setPassword} 
             autoCapitalize="none"
             autoCorrect={false}
-            secureTextEntry
             />
         <Input 
             label="Account Type" 
@@ -32,7 +31,6 @@ const AuthForm = ({header, errorMessage, onSubmit, buttonText}) => {
             onChangeText={setAccountType} 
             autoCapitalize="none"
             autoCorrect={false}
-            secureTextEntry
             />
 
         <Text style={styles.errorMessage} >{errorMessage}</Text>

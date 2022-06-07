@@ -2,21 +2,19 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import AccountScreen from './src/screens/AccountScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
-import ProfileCreateScreen from './src/screens/ProfileCreateScreen';
 import NewbProfileDetailScreen from './src/screens/NewbProfileDetailScreen';
 import NewbProfileListScreen from './src/screens/NewbProfileListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
-import {MaterialIcons, Ionicons, MaterialCommunityIcons, FontAwesome5} from '@expo/vector-icons'
+import {MaterialIcons, Ionicons, FontAwesome5} from '@expo/vector-icons'
 import CompanyListScreen from './src/screens/CompanyListScreen';
 import CompanyDetailScreen from './src/screens/CompanyDetailScreen';
 import JobListScreen from './src/screens/JobListScreen';
 import JobDetailScreen from './src/screens/JobDetailScreen';
-import JobCreateScreen from './src/screens/JobCreateScreen';
+import MyDrawer from './src/screens/MyDrawer';
 
 const NewbProfileListFlow = createStackNavigator({
   NewbProfileList: NewbProfileListScreen,
@@ -38,17 +36,6 @@ CompanyListFlow.navigationOptions = {
   tabBarIcon: <FontAwesome5 name="building" size={20} />
 }
 
-const AccountFlow = createStackNavigator({
-  Account: AccountScreen,
-  ProfileCreate: ProfileCreateScreen,
-  JobCreate: JobCreateScreen
-})
-
-AccountFlow.navigationOptions = {
-  title: 'Account',
-  tabBarIcon: <MaterialCommunityIcons name="account-circle-outline" size={20} />
-}
-
 const JobListFlow = createStackNavigator({
   JobList: JobListScreen,
   JobDetail: JobDetailScreen
@@ -59,6 +46,7 @@ JobListFlow.navigationOptions = {
     tabBarIcon: <MaterialIcons name="work-outline" size={20} />
 }
 
+
 const switchNavigator = createSwitchNavigator({
   resolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator ({
@@ -66,10 +54,10 @@ const switchNavigator = createSwitchNavigator({
     Signin: SigninScreen,
   }),
   mainFlow: createBottomTabNavigator({
-    AccountFlow,
+    Account: MyDrawer,
     JobListFlow,
     NewbProfileListFlow,
-    CompanyListFlow,
+    CompanyListFlow
   }),
 });
 
