@@ -1,13 +1,10 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { StyleSheet, Text } from 'react-native'
-import {Button} from 'react-native-elements'
-import { Context as AuthContext } from '../context/AuthContext'
+import { Context as AuthContext } from '../../context/AuthContext'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import serverConnectApi from '../api/serverConnect'
+import serverConnectApi from '../../api/serverConnect'
 
 const ProfileScreen = ({navigation}) => {
-
-    const {signout} = useContext(AuthContext)
 
     const [accountProfile, setAccountProfile] = useState({})
 
@@ -24,8 +21,7 @@ const ProfileScreen = ({navigation}) => {
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <Text style={styles.header} >{accountProfile.name}</Text>
         <Text style={styles.text} >{accountProfile.location}</Text>
-        <Text></Text>
-        <Button style={styles.button} title="Sign Out" onPress={signout} />
+        <Text>And other data here...</Text>
         </SafeAreaView>
         )
 }

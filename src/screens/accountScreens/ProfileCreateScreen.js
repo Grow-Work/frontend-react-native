@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import {FontAwesome} from '@expo/vector-icons'
 
 const ProfileCreateScreen = () => {
     return (
@@ -10,13 +9,6 @@ const ProfileCreateScreen = () => {
         </View>
         )
 }
-
-ProfileCreateScreen.navigationOptions = {
-    title: 'Create Profile',
-    tabBarIcon: <FontAwesome name="plus" size={20} />
-}
-
-
 
 const styles = StyleSheet.create({
     header: {

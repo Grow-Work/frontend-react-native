@@ -2,19 +2,19 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import SigninScreen from './src/screens/SigninScreen';
-import SignupScreen from './src/screens/SignupScreen';
+import SigninScreen from './src/screens/authScreens/SigninScreen';
+import SignupScreen from './src/screens/authScreens/SignupScreen';
 import NewbProfileDetailScreen from './src/screens/NewbProfileDetailScreen';
 import NewbProfileListScreen from './src/screens/NewbProfileListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
-import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
+import ResolveAuthScreen from './src/screens/authScreens/ResolveAuthScreen';
 import {MaterialIcons, Ionicons, FontAwesome5} from '@expo/vector-icons'
 import CompanyListScreen from './src/screens/CompanyListScreen';
 import CompanyDetailScreen from './src/screens/CompanyDetailScreen';
 import JobListScreen from './src/screens/JobListScreen';
 import JobDetailScreen from './src/screens/JobDetailScreen';
-import MyDrawer from './src/screens/MyDrawer';
+import MyDrawer from './src/components/MyDrawer';
 
 const NewbProfileListFlow = createStackNavigator({
   NewbProfileList: NewbProfileListScreen,
