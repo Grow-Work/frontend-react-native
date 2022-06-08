@@ -21,6 +21,7 @@ const AccountJobsScreen = ({navigation}) => {
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <Text style={styles.header} >Account Jobs Here</Text>
         <Text style={styles.text} >...if any.</Text>
+        <Text style={styles.text} >You don't have any jobs saved yet.</Text>
         <Text></Text>
         </SafeAreaView>
         )

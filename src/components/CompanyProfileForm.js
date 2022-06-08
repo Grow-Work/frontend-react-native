@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
+import { ScrollView } from 'react-navigation'
 
 const CompanyProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
 
@@ -9,7 +10,7 @@ const CompanyProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
     const [location, setLocation] = useState('')
     
     return (
-        <>
+        <ScrollView>
         <Text h3 style={{marginBottom: 25}} >{header}</Text>
         <Input 
             label="Name" 
@@ -40,7 +41,7 @@ const CompanyProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
             title={buttonText}
             onPress={() => onSubmit({email, name, location})}
         />
-        </>
+        </ ScrollView>
     )
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
+import { ScrollView } from 'react-navigation'
 
 const NewbProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
 
@@ -9,7 +10,7 @@ const NewbProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
     const [location, setLocation] = useState('')
     
     return (
-        <>
+        <ScrollView>
         <Text h3 style={{marginBottom: 25}} >{header}</Text>
         <Input 
             label="First Name" 
@@ -38,7 +39,7 @@ const NewbProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
             title={buttonText}
             onPress={() => onSubmit({email, first_name, location})}
         />
-        </>
+        </ ScrollView>
     )
 }
 

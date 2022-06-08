@@ -1,16 +1,21 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
+import { ScrollView } from 'react-navigation'
 
 const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
 
     const [title, setTitle] = useState('')
     const [company, setCompany] = useState('')
     const [description, setDescription] = useState('')
+    const [compensation, setCompensation] = useState('')
+    const [applyLink, setApplyLink] = useState('')
+    const [location, setLocation] = useState('')
     
     return (
         <>
         <Text h3 style={{marginBottom: 25}} >{header}</Text>
+        <ScrollView>
         <Input 
             label="Title" 
             value={title} 
@@ -22,7 +27,6 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
             value={company} 
             onChangeText={setCompany}
             autoCorrect={false}
-            secureTextEntry
             />
         <Input 
             label="Description" 
@@ -30,7 +34,27 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
             onChangeText={setDescription} 
             autoCapitalize="none"
             autoCorrect={false}
-            secureTextEntry
+            />
+            <Input 
+            label="Compensation" 
+            value={compensation} 
+            onChangeText={setCompensation} 
+            autoCapitalize="none"
+            autoCorrect={false}
+            />
+            <Input 
+            label="Location" 
+            value={location} 
+            onChangeText={setLocation} 
+            autoCapitalize="none"
+            autoCorrect={false}
+            />
+            <Input 
+            label="Apply Link" 
+            value={applyLink} 
+            onChangeText={setApplyLink} 
+            autoCapitalize="none"
+            autoCorrect={false}
             />
 
         <Text style={styles.errorMessage} >{errorMessage}</Text>
@@ -38,6 +62,7 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
             title={buttonText}
             onPress={() => onSubmit({title, company, description})}
         />
+        </ ScrollView>
         </>
     )
 }

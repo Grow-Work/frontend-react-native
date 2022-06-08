@@ -1,4 +1,4 @@
-import createDataContext from "./createDataContext";
+import CreateContext from "./CreateContext";
 import serverConnectApi from '../api/serverConnect'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { navigate } from "../navigationRef";
@@ -67,7 +67,7 @@ const signout = dispatch => async () => {
         navigate('Signin')
     }
 
-export const {Provider, Context} = createDataContext(
+export const {Provider, Context} = CreateContext(
     authReducer,
     {signin, signout, signup, clearErrorMessage, tryLocalSignin},
     {token: null, errorMessage: ''}

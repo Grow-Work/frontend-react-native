@@ -7,6 +7,7 @@ import SignupScreen from './src/screens/authScreens/SignupScreen';
 import NewbProfileDetailScreen from './src/screens/NewbProfileDetailScreen';
 import NewbProfileListScreen from './src/screens/NewbProfileListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
+import {Provider as DataProvider} from './src/context/DataContext'
 import { setNavigator } from './src/navigationRef';
 import ResolveAuthScreen from './src/screens/authScreens/ResolveAuthScreen';
 import {MaterialIcons, Ionicons, FontAwesome5} from '@expo/vector-icons'
@@ -66,7 +67,9 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return (
     <AuthProvider>
-      <App ref={(navigator) => {setNavigator(navigator)}} />
+      <DataProvider>
+        <App ref={(navigator) => {setNavigator(navigator)}} />
+      </DataProvider>
     </AuthProvider>
   )
 }

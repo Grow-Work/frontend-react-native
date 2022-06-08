@@ -24,6 +24,7 @@ const AuthForm = ({header, errorMessage, onSubmit, buttonText}) => {
             onChangeText={setPassword} 
             autoCapitalize="none"
             autoCorrect={false}
+            // secureTextEntry
             />
         <Input 
             label="Account Type" 

@@ -1,21 +1,24 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import {FontAwesome} from '@expo/vector-icons'
+import JobListingForm from '../../components/JobListingForm'
+import { Context as DataContext } from '../../context/DataContext'
 
 const JobCreateScreen = () => {
+
+    const {state, getAccountType, clearErrorMessage} = useContext(DataContext)
+    const jobs = []
+
     return (
         <View style={styles.container}>
-        <Text style={styles.header} >Job Create Screen</Text>
-        <Text style={styles.text} >This element is conditionally rendered.</Text>
+        <JobListingForm
+            header="Create New Job Listing"
+            errorMessage={state.errorMessage}
+            buttonText="Add Job"
+            // onSubmit={signup}
+        />
         </View>
         )
 }
-
-JobCreateScreen.navigationOptions = {
-    title: 'Add Job',
-}
-
-
 
 const styles = StyleSheet.create({
     header: {
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
     container: {
         margin: 15,
         flex: 1,
-        marginTop: 50
+        marginTop: 30
     }
 })
 
