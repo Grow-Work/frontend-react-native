@@ -1,20 +1,23 @@
 import React, {useContext} from 'react'
+import { NavigationEvents } from 'react-navigation'
 import { StyleSheet, Text, View } from 'react-native'
 import JobListingForm from '../../components/JobListingForm'
 import { Context as DataContext } from '../../context/DataContext'
 
 const JobCreateScreen = () => {
 
-    const {state, getAccountType, clearErrorMessage} = useContext(DataContext)
-    const jobs = []
+    const {state, getAccountType, createJob, clearErrorMessage} = useContext(DataContext)
 
     return (
         <View style={styles.container}>
+            <NavigationEvents 
+                onWillFocus={clearErrorMessage}
+            />
         <JobListingForm
             header="Create New Job Listing"
             errorMessage={state.errorMessage}
             buttonText="Add Job"
-            // onSubmit={signup}
+            onSubmit={createJob}
         />
         </View>
         )

@@ -11,13 +11,11 @@ const dataReducer = (state, action) => {
         case 'fetch_newbs':
             return action.payload
         case 'get_account_type':
-            return {errorMessage: '', accountType: action.payload}
+            return action.payload
         case 'fetch_account_profile':
             return action.payload
         case 'fetch_account_jobs':
-            return
-        case 'save_job':
-            return
+            return action.payload
         case 'add_error':
             return {...state, errorMessage: action.payload}
         case 'clear_error_message':
@@ -69,6 +67,10 @@ const getAccountType = dispatch => async () => {
     } else {
         dispatch({type: 'add_error', payload: "No account type found."})
     }
+}
+
+const createJob = dispatch => async (title, company) => {
+    await serverConnectApi.post('/account/company/profile', { title, company})
 }
 
 const clearErrorMessage = dispatch => () => {

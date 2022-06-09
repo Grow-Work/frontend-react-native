@@ -1,4 +1,5 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React, {useContext} from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
@@ -7,9 +8,8 @@ import ProfileScreen from '../screens/accountScreens/ProfileScreen';
 import AccountJobsScreen from '../screens/accountScreens/AccountJobsScreen';
 import JobCreateScreen from '../screens/accountScreens/JobCreateScreen';
 import SettingsScreen from '../screens/accountScreens/SettingsScreen';
-
-const account_type = "company"
-// const account_type = "newb"
+import { Context as DataContext } from '../context/DataContext'
+import { NavigationEvents } from 'react-navigation'
 
 const Drawer = createDrawerNavigator();
 
@@ -19,14 +19,20 @@ MyDrawer.navigationOptions = {
   }
 
 function Drawers() {
+
+  const {state, getAccountType} = useContext(DataContext)
+  console.log(state)
   return (
+    <>
+    <NavigationEvents onWillFocus={getAccountType} />
     <Drawer.Navigator useLegacyImplementation>
         <Drawer.Screen name="Profile" component={ProfileScreen} />
         <Drawer.Screen name="Edit Profile" component={ProfileEditScreen} />
         <Drawer.Screen name="Jobs" component={AccountJobsScreen} />
-        {account_type === "company"? <Drawer.Screen name="Add Job" component={JobCreateScreen} /> : null}
+        {state === "test"? <Drawer.Screen name="Add Job" component={JobCreateScreen} /> : null}
         <Drawer.Screen name="Settings" component={SettingsScreen} />
     </Drawer.Navigator>
+    </>
   );
 }
 
