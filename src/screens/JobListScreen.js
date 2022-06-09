@@ -1,29 +1,36 @@
-import React, {useEffect, useState} from 'react'
-import { SafeAreaView, StyleSheet, Text, Button} from 'react-native'
-import serverConnectApi from '../api/serverConnect'
+import React, {useContext} from 'react'
+import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native'
+import { NavigationEvents } from 'react-navigation'
+import { Context as DataContext } from '../context/DataContext'
+import { ListItem } from 'react-native-elements'
 
 const JobListScreen = ({navigation}) => {
 
-    const [jobList, setJobList] = useState([])
-
-    useEffect(() => {
-        serverConnectApi
-          .get('/jobs')
-          .then((res) => setJobList(res.data))
-          .catch((err) => console.log(err, "it has an error"));
-      }, []);
-
-      console.log("jobs:",jobList)
+    const {state, fetchJobListings } = useContext(DataContext)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >Job List Screen</Text>
-        <Text style={styles.text} >This is some other info about this screen.</Text>
-        <Text></Text>
-        <Button 
-            title="details"
-            onPress={() => navigation.navigate('JobDetail')}
-        />
+        <NavigationEvents onWillFocus={fetchJobListings} />
+        <FlatList
+        data={state}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity onPress={() => 
+                navigation.navigate('JobDetail', { _id: item._id})
+            }
+            >
+              <ListItem>
+                <ListItem.Content>
+                  <ListItem.Title style={styles.header} >{item.title}</ListItem.Title>
+                  <Text>{item.company}</Text>
+                </ListItem.Content>
+                <ListItem.Chevron />
+              </ListItem>
+            </TouchableOpacity>
+          );
+        }}
+      />
         </SafeAreaView>
     )
 }
@@ -34,13 +41,13 @@ JobListScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: 30,
-        marginBottom: 50
+        fontSize: 20,
+        marginBottom: 10
     },
     container: {
         margin: 15,
         flex: 1,
-        marginTop: 50
+        marginTop: 15
     }
 })
 

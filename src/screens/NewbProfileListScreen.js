@@ -1,30 +1,36 @@
-import React, {useState, useEffect} from 'react'
-import { SafeAreaView, StyleSheet, Text, Button, Linking} from 'react-native'
-import {MaterialIcons} from '@expo/vector-icons'
-import serverConnectApi from '../api/serverConnect'
+import React, {useContext} from 'react'
+import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native'
+import { NavigationEvents } from 'react-navigation'
+import { Context as DataContext } from '../context/DataContext'
+import { ListItem } from 'react-native-elements'
 
 const NewbProfileListScreen = ({navigation}) => {
 
-    const [newbsList, setNewbsList] = useState([])
-
-    useEffect(() => {
-        serverConnectApi
-          .get('/professionals')
-          .then((res) => setNewbsList(res.data))
-          .catch((err) => console.log(err, "it has an error"));
-      }, []);
-
-      console.log("newb profiles:",newbsList)
+    const {state, fetchNewbs } = useContext(DataContext)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >Newb List Screen</Text>
-        <Text style={styles.text} >This is some other info about this screen.</Text>
-        <Text></Text>
-        <Button 
-            title="details"
-            onPress={() => navigation.navigate('NewbProfileDetail')}
-        />
+         <NavigationEvents onWillFocus={fetchNewbs} />
+        <FlatList
+        data={state}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity onPress={() => 
+                navigation.navigate('NewbProfileDetail', { _id: item._id})
+            }
+            >
+              <ListItem>
+                <ListItem.Content>
+                  <ListItem.Title style={styles.header} >{item.first_name}</ListItem.Title>
+                  <Text>{item.location}</Text>
+                </ListItem.Content>
+                <ListItem.Chevron />
+              </ListItem>
+            </TouchableOpacity>
+          );
+        }}
+      />
         </SafeAreaView>
     )
 }
@@ -35,13 +41,13 @@ NewbProfileListScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: 30,
-        marginBottom: 50
+        fontSize: 20,
+        marginBottom: 10
     },
     container: {
         margin: 15,
         flex: 1,
-        marginTop: 50
+        marginTop: 15
     }
 })
 
