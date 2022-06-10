@@ -1,41 +1,49 @@
-import React, {useContext, useState, useEffect} from 'react'
-import { StyleSheet, Text } from 'react-native'
-import { Context as AuthContext } from '../../context/AuthContext'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import serverConnectApi from '../../api/serverConnect'
+import React, {useContext} from 'react'
+import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native'
+import { Context as DataContext } from '../../context/DataContext'
+import { ListItem } from 'react-native-elements'
 
-const AccountJobsScreen = ({navigation}) => {
+const AccountJobsScreen = () => {
 
-    // const [accountProfile, setAccountProfile] = useState({})
-
-    // useEffect(() => {
-    //     serverConnectApi
-    //       .get('/account/company/profile')
-    //       .then((res) => setAccountProfile(res.data))
-    //       .catch((err) => console.log(err, "account screen error"));
-    //   }, []);
-
-    //   console.log("account profile:",accountProfile)
+    const {state} = useContext(DataContext)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >Account Jobs Here</Text>
-        <Text style={styles.text} >...if any.</Text>
-        <Text style={styles.text} >You don't have any jobs saved yet.</Text>
-        <Text></Text>
+        {state.jobListings? 
+        <FlatList
+        data={state.jobListings}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity onPress={() => 
+                console.log("Hi!")
+            }
+            >
+              <ListItem>
+                <ListItem.Content>
+                  <ListItem.Title style={styles.header} >{item.title}</ListItem.Title>
+                  <Text>{item.company}</Text>
+                </ListItem.Content>
+                <ListItem.Chevron />
+              </ListItem>
+            </TouchableOpacity>
+          );
+        }}
+      />
+      : <Text>Loading...</Text>}
         </SafeAreaView>
         )
 }
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: 30,
-        marginBottom: 20
+        fontSize: 20,
+        marginBottom: 10
     },
     container: {
         margin: 15,
         flex: 1,
-        marginTop: 50
+        marginTop: 15
     },
     text: {
         fontSize: 20

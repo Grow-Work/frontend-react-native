@@ -11,26 +11,28 @@ const NewbProfileListScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
          <NavigationEvents onWillFocus={fetchNewbs} />
-        <FlatList
-        data={state}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity onPress={() => 
-                navigation.navigate('NewbProfileDetail', { _id: item._id})
-            }
-            >
-              <ListItem>
-                <ListItem.Content>
-                  <ListItem.Title style={styles.header} >{item.first_name}</ListItem.Title>
-                  <Text>{item.location}</Text>
-                </ListItem.Content>
-                <ListItem.Chevron />
-              </ListItem>
-            </TouchableOpacity>
-          );
-        }}
-      />
+         {state.newbs? 
+       <FlatList
+       data={state.newbs}
+       keyExtractor={(item) => item._id}
+       renderItem={({ item }) => {
+         return (
+           <TouchableOpacity onPress={() => 
+               navigation.navigate('NewbProfileDetail', { _id: item._id})
+           }
+           >
+             <ListItem>
+               <ListItem.Content>
+                 <ListItem.Title style={styles.header} >{item.first_name}</ListItem.Title>
+                 <Text>{item.location}</Text>
+               </ListItem.Content>
+               <ListItem.Chevron />
+             </ListItem>
+           </TouchableOpacity>
+         );
+       }}
+     />
+      : <Text>Loading...</Text>}
         </SafeAreaView>
     )
 }

@@ -20,16 +20,18 @@ MyDrawer.navigationOptions = {
 
 function Drawers() {
 
-  const {state, getAccountType} = useContext(DataContext)
+  const {state: {accountType}, getAccountType, fetchCompanyProfile, fetchCompanyJobListings} = useContext(DataContext)
   
   return (
     <>
     <NavigationEvents onWillFocus={getAccountType} />
+    <NavigationEvents onWillFocus={fetchCompanyProfile} />
+    <NavigationEvents onWillFocus={fetchCompanyJobListings} />
     <Drawer.Navigator useLegacyImplementation>
         <Drawer.Screen name="Profile" component={ProfileScreen} />
         <Drawer.Screen name="Edit Profile" component={ProfileEditScreen} />
-        <Drawer.Screen name="Jobs" component={AccountJobsScreen} />
-        {state === "test"? <Drawer.Screen name="Add Job" component={JobCreateScreen} /> : null}
+        <Drawer.Screen name="Your Jobs" component={AccountJobsScreen} />
+        {accountType === "test"? <Drawer.Screen name="Add Job" component={JobCreateScreen} /> : null}
         <Drawer.Screen name="Settings" component={SettingsScreen} />
     </Drawer.Navigator>
     </>

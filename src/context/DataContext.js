@@ -6,19 +6,19 @@ import { navigate } from "../navigationRef";
 const dataReducer = (state, action) => {
     switch (action.type) {
         case 'fetch_jobs':
-            return action.payload
+            return {...state, jobs: action.payload}
         case 'fetch_companies':
-            return action.payload
+            return {...state, companies: action.payload}
         case 'fetch_newbs':
-            return action.payload
+            return {...state, newbs: action.payload}
         case 'get_account_type':
-            return action.payload
+            return {...state, accountType: action.payload}
         case 'fetch_account_profile':
-            return action.payload
+            return {...state, accountProfile: action.payload}
         case 'fetch_company_job_listings':
-            return action.payload
+            return {...state, jobListings: action.payload}
         case 'fetch_newb_saved_jobs':
-            return action.payload
+            return {...state, savedJobs: action.payload}
         case 'add_error':
             return {...state, errorMessage: action.payload}
         case 'clear_error_message':
@@ -112,7 +112,6 @@ const deleteJobListing = dispatch => async () => {
 }
 
 const fetchCompanyProfile = dispatch => async () => {
-
     try {
         const response = await serverConnectApi.get('/account/company/profile')
         dispatch({type: 'fetch_account_profile', payload: response.data})

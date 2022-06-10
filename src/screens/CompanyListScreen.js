@@ -11,8 +11,9 @@ const CompanyListScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <NavigationEvents onWillFocus={fetchCompanies} />
+        {state.companies? 
         <FlatList
-        data={state}
+        data={state.companies}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
           return (
@@ -31,6 +32,7 @@ const CompanyListScreen = ({navigation}) => {
           );
         }}
       />
+      : <Text>Loading...</Text>}
         </SafeAreaView>
     )
 }

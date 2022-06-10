@@ -11,8 +11,9 @@ const JobListScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <NavigationEvents onWillFocus={fetchJobs} />
+        {state.jobs? 
         <FlatList
-        data={state}
+        data={state.jobs}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
           return (
@@ -31,6 +32,7 @@ const JobListScreen = ({navigation}) => {
           );
         }}
       />
+      : <Text>Loading...</Text>}
         </SafeAreaView>
     )
 }

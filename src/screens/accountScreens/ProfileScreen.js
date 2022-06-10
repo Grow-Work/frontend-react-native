@@ -1,27 +1,22 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext} from 'react'
 import { StyleSheet, Text } from 'react-native'
-import { Context as AuthContext } from '../../context/AuthContext'
+import { Context as DataContext } from '../../context/DataContext'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import serverConnectApi from '../../api/serverConnect'
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = () => {
 
-    const [accountProfile, setAccountProfile] = useState({})
-
-    useEffect(() => {
-        serverConnectApi
-          .get('/account/company/profile')
-          .then((res) => setAccountProfile(res.data))
-          .catch((err) => console.log(err, "account screen error"));
-      }, []);
-
-      console.log("account profile:",accountProfile)
+    const {state} = useContext(DataContext)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >{accountProfile.name}</Text>
-        <Text style={styles.text} >{accountProfile.location}</Text>
-        <Text>And other data here...</Text>
+        {state.accountProfile? 
+            <>
+            <Text style={styles.header} >{state.accountProfile.name}</Text>
+            <Text style={styles.text} >{state.accountProfile.location}</Text>
+            </>
+        : <Text>Loading...</Text>}
+        
+        
         </SafeAreaView>
         )
 }

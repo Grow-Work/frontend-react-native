@@ -12,7 +12,6 @@ const authReducer = (state, action) => {
         case 'clear_error_message':
             return {...state, errorMessage: ''}
         case 'signout':
-            console.log('signout case here')
             return {token: null, errorMessage: ''}
         default:
             return state
@@ -36,7 +35,6 @@ const clearErrorMessage = dispatch => () => {
 const signup = dispatch => async ({email, password, account_type}) => {
         try {
             const response = await serverConnectApi.post('/auth/signup', {email, password, account_type})
-            console.log("signup response", response.data)
             await AsyncStorage.setItem('token', response.data.token)
             await AsyncStorage.setItem('accountType', response.data.account_type)
             dispatch({type: 'signin', payload: response.data.token})
@@ -49,7 +47,6 @@ const signup = dispatch => async ({email, password, account_type}) => {
 const signin = dispatch => async ({email, password, account_type}) => {
         try {
             const response = await serverConnectApi.post('/auth/signin', {email, password, account_type})
-            console.log("signin response", response.data)
             await AsyncStorage.setItem('token', response.data.token)
             await AsyncStorage.setItem('accountType', response.data.account_type)
             dispatch({type: 'signin', payload: response.data.token})
@@ -63,7 +60,6 @@ const signout = dispatch => async () => {
         await AsyncStorage.removeItem('token')
         await AsyncStorage.removeItem('accountType')
         dispatch({type:'signout'})
-        console.log('ready to navigate back?')
         navigate('Signin')
     }
 
