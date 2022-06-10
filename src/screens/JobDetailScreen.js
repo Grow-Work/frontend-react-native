@@ -7,7 +7,7 @@ const JobDetailScreen = ({navigation}) => {
 
     const {state} = useContext(DataContext)
     const _id = navigation.getParam('_id')
-    const job = state.find(t => t._id === _id)
+    const job = state.jobs.find(t => t._id === _id)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>

@@ -20,13 +20,14 @@ MyDrawer.navigationOptions = {
 
 function Drawers() {
 
-  const {state: {accountType}, getAccountType, fetchCompanyProfile, fetchCompanyJobListings} = useContext(DataContext)
+  const {state: {accountType}, getAccountType, clearErrorMessage, fetchCompanyProfile, fetchCompanyJobListings} = useContext(DataContext)
   
   return (
     <>
     <NavigationEvents onWillFocus={getAccountType} />
     <NavigationEvents onWillFocus={fetchCompanyProfile} />
     <NavigationEvents onWillFocus={fetchCompanyJobListings} />
+    <NavigationEvents onWillFocus={clearErrorMessage} />
     <Drawer.Navigator useLegacyImplementation>
         <Drawer.Screen name="Profile" component={ProfileScreen} />
         <Drawer.Screen name="Edit Profile" component={ProfileEditScreen} />

@@ -6,13 +6,10 @@ import { Context as DataContext } from '../../context/DataContext'
 
 const JobCreateScreen = () => {
 
-    const {state, createJobListing, clearErrorMessage} = useContext(DataContext)
+    const {state, createJobListing} = useContext(DataContext)
 
     return (
         <View style={styles.container}>
-            <NavigationEvents 
-                onWillFocus={clearErrorMessage}
-            />
         <JobListingForm
             header="Create New Job Listing"
             errorMessage={state.errorMessage}

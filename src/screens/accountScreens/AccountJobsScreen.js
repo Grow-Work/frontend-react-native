@@ -24,7 +24,7 @@ const AccountJobsScreen = () => {
                   <ListItem.Title style={styles.header} >{item.title}</ListItem.Title>
                   <Text>{item.company}</Text>
                 </ListItem.Content>
-                <ListItem.Chevron />
+                {/* <ListItem.Accordion /> */}
               </ListItem>
             </TouchableOpacity>
           );
