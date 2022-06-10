@@ -60,7 +60,7 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
         <Text style={styles.errorMessage} >{errorMessage}</Text>
         <Button 
             title={buttonText}
-            onPress={() => onSubmit({title, company, description})}
+            onPress={() => onSubmit({title, company})}
         />
         </ ScrollView>
         </>

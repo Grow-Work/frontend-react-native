@@ -21,7 +21,7 @@ MyDrawer.navigationOptions = {
 function Drawers() {
 
   const {state, getAccountType} = useContext(DataContext)
-  console.log(state)
+  
   return (
     <>
     <NavigationEvents onWillFocus={getAccountType} />

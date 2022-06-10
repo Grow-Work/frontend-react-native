@@ -6,11 +6,11 @@ import { ListItem } from 'react-native-elements'
 
 const JobListScreen = ({navigation}) => {
 
-    const {state, fetchJobListings } = useContext(DataContext)
+    const {state, fetchJobs } = useContext(DataContext)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <NavigationEvents onWillFocus={fetchJobListings} />
+        <NavigationEvents onWillFocus={fetchJobs} />
         <FlatList
         data={state}
         keyExtractor={(item) => item._id}

@@ -6,7 +6,7 @@ import { Context as DataContext } from '../../context/DataContext'
 
 const JobCreateScreen = () => {
 
-    const {state, getAccountType, createJob, clearErrorMessage} = useContext(DataContext)
+    const {state, createJobListing, clearErrorMessage} = useContext(DataContext)
 
     return (
         <View style={styles.container}>
@@ -17,7 +17,7 @@ const JobCreateScreen = () => {
             header="Create New Job Listing"
             errorMessage={state.errorMessage}
             buttonText="Add Job"
-            onSubmit={createJob}
+            onSubmit={createJobListing}
         />
         </View>
         )
