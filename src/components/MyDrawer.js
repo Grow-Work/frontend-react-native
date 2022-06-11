@@ -21,12 +21,11 @@ MyDrawer.navigationOptions = {
 
 function Drawers() {
 
-  const {state: {accountType}, getAccountType, clearErrorMessage, fetchCompanyProfile, fetchCompanyJobListings} = useContext(DataContext)
+  const {state: {accountType}, getAccountType, clearErrorMessage, fetchProfile, fetchCompanyJobListings} = useContext(DataContext)
   
   function onFocus() {
     getAccountType()
-    fetchCompanyProfile()
-    fetchCompanyJobListings()
+    fetchProfile()
     clearErrorMessage()
   }
 
@@ -38,7 +37,7 @@ function Drawers() {
         <Drawer.Screen name="Create Profile" component={ProfileCreateScreen} />
         <Drawer.Screen name="Edit Profile" component={ProfileEditScreen} />
         <Drawer.Screen name="Your Jobs" component={AccountJobsScreen} />
-        {accountType === "test"? <Drawer.Screen name="Add Job" component={JobCreateScreen} /> : null}
+        {accountType === "company"? <Drawer.Screen name="Add Job" component={JobCreateScreen} /> : null}
         <Drawer.Screen name="Settings" component={SettingsScreen} />
     </Drawer.Navigator>
     </>

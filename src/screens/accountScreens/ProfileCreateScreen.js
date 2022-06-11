@@ -1,19 +1,29 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import CompanyProfileForm from '../../components/CompanyProfileForm'
+import NewbProfileForm from '../../components/NewbProfileForm'
 import { Context as DataContext } from '../../context/DataContext'
 
 const ProfileCreateScreen = () => {
 
-    const {state, createCompanyProfile} = useContext(DataContext)
+    const {state, createCompanyProfile, createNewbProfile} = useContext(DataContext)
 
     return (
         <View style={styles.container}>
-        <CompanyProfileForm 
-            header="Create Profile"
-            buttonText="Save"
-            onSubmit={createCompanyProfile}
-        />
+        {state.accountType === "company" ? 
+            <CompanyProfileForm 
+                header="Create Company Profile"
+                buttonText="Save"
+                onSubmit={createCompanyProfile}
+            />
+            : 
+            <NewbProfileForm 
+                header="Create Your Profile"
+                buttonText="Save"
+                onSubmit={createNewbProfile}
+            />
+        }
+        
         </View>
         )
 }

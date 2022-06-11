@@ -30,6 +30,8 @@ const dataReducer = (state, action) => {
     }
 }
 
+let accountType
+
 const fetchJobs = dispatch => async () => {
 
     try {
@@ -64,7 +66,7 @@ const fetchCompanies = dispatch => async () => {
 }
 
 const getAccountType = dispatch => async () => {
-    const accountType = await AsyncStorage.getItem('accountType')
+    accountType = await AsyncStorage.getItem('accountType')
     if (accountType) {
         dispatch({type:'get_account_type', payload: accountType})
     } else {
@@ -111,10 +113,17 @@ const deleteJobListing = dispatch => async () => {
     }
 }
 
-const fetchCompanyProfile = dispatch => async () => {
+const fetchProfile = dispatch => async () => {
     try {
-        const response = await serverConnectApi.get('/account/company/profile')
-        dispatch({type: 'fetch_account_profile', payload: response.data})
+        const company = await serverConnectApi.get('/account/company/profile')
+        const newb = await serverConnectApi.get('/account/professional/profile')
+        if (accountType == "company") {
+            console.log("company account")
+            dispatch({type: 'fetch_account_profile', payload: company.data})
+        } else {
+            console.log("not company account")
+            dispatch({type: 'fetch_account_profile', payload: newb.data})
+        }
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -149,21 +158,10 @@ const deleteCompanyProfile = dispatch => async () => {
     }
 }
 
-const fetchNewbProfile = dispatch => async () => {
+const createNewbProfile = dispatch => async ({first_name, email, location}) => {
 
     try {
-        const response = await serverConnectApi.get('/account/professional/profile')
-        dispatch({type: 'fetch_account_profile', payload: response.data})
-    } catch (error) {
-        dispatch({type: 'add_error', payload: `${error}`})
-    }
-
-}
-
-const createNewbProfile = dispatch => async ({first_name, location}) => {
-
-    try {
-        const response = await serverConnectApi.post('/account/professional/profile', {first_name, location})
+        const response = await serverConnectApi.post('/account/professional/profile', {first_name, email, location})
         navigate('Account')
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
@@ -195,6 +193,6 @@ const clearErrorMessage = dispatch => () => {
 
 export const {Provider, Context} = CreateContext(
     dataReducer,
-    {clearErrorMessage, getAccountType, fetchCompanies, createJobListing, fetchNewbs, fetchJobs, deleteCompanyProfile, deleteNewbProfile, deleteJobListing, editCompanyProfile, editJobListing, editNewbProfile, createNewbProfile, fetchNewbProfile, createCompanyProfile, fetchCompanyProfile, fetchCompanyJobListings},
+    {clearErrorMessage, getAccountType, fetchCompanies, createJobListing, fetchNewbs, fetchJobs, deleteCompanyProfile, deleteNewbProfile, deleteJobListing, editCompanyProfile, editJobListing, editNewbProfile, createNewbProfile, fetchProfile, createCompanyProfile, fetchCompanyJobListings},
     {accountType: null, errorMessage: ''}
 )
