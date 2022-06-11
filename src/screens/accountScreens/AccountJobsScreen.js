@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
-import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native'
+import { SafeAreaView, StyleSheet, FlatList, Text} from 'react-native'
 import { Context as DataContext } from '../../context/DataContext'
-import { ListItem } from 'react-native-elements'
+import { List, Colors } from 'react-native-paper';
 
 const AccountJobsScreen = () => {
 
@@ -15,18 +15,13 @@ const AccountJobsScreen = () => {
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => 
-                console.log("Hi!")
-            }
-            >
-              <ListItem>
-                <ListItem.Content>
-                  <ListItem.Title style={styles.header} >{item.title}</ListItem.Title>
-                  <Text>{item.company}</Text>
-                </ListItem.Content>
-                {/* <ListItem.Accordion /> */}
-              </ListItem>
-            </TouchableOpacity>
+            <List.Accordion
+            left={props => <List.Icon {...props} color={Colors.green600} icon="equal" />}
+            title={item.title}>
+            <List.Item title={`Company: ${item.company}`} />
+            <List.Item 
+            title={item.location} />
+          </List.Accordion>
           );
         }}
       />
