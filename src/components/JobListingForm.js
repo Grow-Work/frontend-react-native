@@ -16,52 +16,52 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
         <>
         <Text h3 style={{marginBottom: 25}} >{header}</Text>
         <ScrollView>
-        <Input 
-            label="Title" 
-            value={title} 
-            onChangeText={setTitle}
-            autoCorrect={false}
-            />
-        <Input 
-            label="Company" 
-            value={company} 
-            onChangeText={setCompany}
-            autoCorrect={false}
-            />
-        <Input 
-            label="Description" 
-            value={description} 
-            onChangeText={setDescription} 
-            autoCapitalize="none"
-            autoCorrect={false}
+            <Input 
+                label="Title" 
+                value={title} 
+                onChangeText={setTitle}
+                autoCorrect={false}
+                />
+            <Input 
+                label="Company" 
+                value={company} 
+                onChangeText={setCompany}
+                autoCorrect={false}
+                />
+            <Input 
+                label="Description" 
+                value={description} 
+                onChangeText={setDescription} 
+                autoCapitalize="none"
+                autoCorrect={false}
+                />
+            <Input 
+                label="Compensation" 
+                value={compensation} 
+                onChangeText={setCompensation} 
+                autoCapitalize="none"
+                autoCorrect={false}
             />
             <Input 
-            label="Compensation" 
-            value={compensation} 
-            onChangeText={setCompensation} 
-            autoCapitalize="none"
-            autoCorrect={false}
+                label="Location" 
+                value={location} 
+                onChangeText={setLocation} 
+                autoCapitalize="none"
+                autoCorrect={false}
             />
             <Input 
-            label="Location" 
-            value={location} 
-            onChangeText={setLocation} 
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-            <Input 
-            label="Apply Link" 
-            value={applyLink} 
-            onChangeText={setApplyLink} 
-            autoCapitalize="none"
-            autoCorrect={false}
+                label="Apply Link" 
+                value={applyLink} 
+                onChangeText={setApplyLink} 
+                autoCapitalize="none"
+                autoCorrect={false}
             />
 
-        <Text style={styles.errorMessage} >{errorMessage}</Text>
-        <Button 
-            title={buttonText}
-            onPress={() => onSubmit({title, company})}
-        />
+            <Text style={styles.errorMessage} >{errorMessage}</Text>
+            <Button 
+                title={buttonText}
+                onPress={() => onSubmit({title, company})}
+            />
         </ ScrollView>
         </>
     )

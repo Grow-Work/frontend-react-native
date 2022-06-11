@@ -11,34 +11,32 @@ const NewbProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
     
     return (
         <ScrollView>
-        <Text h3 style={{marginBottom: 25}} >{header}</Text>
-        <Input 
-            label="First Name" 
-            value={first_name} 
-            onChangeText={setFirstName}
-            autoCorrect={false}
-            secureTextEntry
+            <Text h3 style={{marginBottom: 25}} >{header}</Text>
+            <Input 
+                label="First Name" 
+                value={first_name} 
+                onChangeText={setFirstName}
+                autoCorrect={false}
             />
-        <Input 
-            label="Email" 
-            value={email} 
-            onChangeText={setEmail}
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-        <Input 
-            label="Location" 
-            value={location} 
-            onChangeText={setLocation}
-            autoCorrect={false}
-            secureTextEntry
-            />
+            <Input 
+                label="Email" 
+                value={email} 
+                onChangeText={setEmail}
+                autoCapitalize="none"
+                autoCorrect={false}
+                />
+            <Input 
+                label="Location" 
+                value={location} 
+                onChangeText={setLocation}
+                autoCorrect={false}
+                />
 
-        <Text style={styles.errorMessage} >{errorMessage}</Text>
-        <Button 
-            title={buttonText}
-            onPress={() => onSubmit({email, first_name, location})}
-        />
+            <Text style={styles.errorMessage} >{errorMessage}</Text>
+            <Button 
+                title={buttonText}
+                onPress={() => onSubmit({email, first_name, location})}
+            />
         </ ScrollView>
     )
 }

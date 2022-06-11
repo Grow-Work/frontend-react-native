@@ -15,7 +15,7 @@ const ProfileEditScreen = () => {
             onSubmit={editCompanyProfile}
         />
         </View>
-        )
+    )
 }
 
 const styles = StyleSheet.create({
