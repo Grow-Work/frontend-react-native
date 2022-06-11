@@ -16,6 +16,7 @@ import CompanyDetailScreen from './src/screens/CompanyDetailScreen';
 import JobListScreen from './src/screens/JobListScreen';
 import JobDetailScreen from './src/screens/JobDetailScreen';
 import MyDrawer from './src/components/MyDrawer';
+import TestScreen from './src/screens/TestScreen';
 
 const NewbProfileListFlow = createStackNavigator({
   NewbProfileList: NewbProfileListScreen,
@@ -58,7 +59,8 @@ const switchNavigator = createSwitchNavigator({
     Account: MyDrawer,
     JobListFlow,
     NewbProfileListFlow,
-    CompanyListFlow
+    CompanyListFlow,
+    Test: TestScreen
   }),
 });
 

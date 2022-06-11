@@ -84,9 +84,9 @@ const fetchCompanyJobListings = dispatch => async () => {
 }
 
 const createJobListing = dispatch => async ({title, company}) => {
-
+    console.log("createjoblisting function")
     try {
-        const response = await serverConnectApi.put('/account/company/job-listings')
+        const response = await serverConnectApi.post('/account/company/job-listings', {title, company})
         dispatch({type: 'reset_job_form'})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
@@ -121,20 +121,20 @@ const fetchCompanyProfile = dispatch => async () => {
 
 }
 
-const createCompanyProfile = dispatch => async ({name, location}) => {
+const createCompanyProfile = dispatch => async ({name, email, location}) => {
 
     try {
-        await serverConnectApi.put('/account/company/profile', {name, location})
-        navigate('Account')
+        await serverConnectApi.post('/account/company/profile', {name, email, location})
+        // navigate('Account')
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
 }
 
-const editCompanyProfile = dispatch => async ({name, location}) => {
+const editCompanyProfile = dispatch => async ({name, location, email}) => {
 
     try {
-        await serverConnectApi.put('/account/company/profile', {name, location})
+        await serverConnectApi.put('/account/company/profile', {name, location, email})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -163,7 +163,7 @@ const fetchNewbProfile = dispatch => async () => {
 const createNewbProfile = dispatch => async ({first_name, location}) => {
 
     try {
-        const response = await serverConnectApi.put('/account/professional/profile', {first_name, location})
+        const response = await serverConnectApi.post('/account/professional/profile', {first_name, location})
         navigate('Account')
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
