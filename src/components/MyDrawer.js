@@ -23,12 +23,16 @@ function Drawers() {
 
   const {state: {accountType}, getAccountType, clearErrorMessage, fetchCompanyProfile, fetchCompanyJobListings} = useContext(DataContext)
   
+  function onFocus() {
+    getAccountType()
+    fetchCompanyProfile()
+    fetchCompanyJobListings()
+    clearErrorMessage()
+  }
+
   return (
     <>
-    <NavigationEvents onWillFocus={getAccountType} />
-    <NavigationEvents onWillFocus={fetchCompanyProfile} />
-    <NavigationEvents onWillFocus={fetchCompanyJobListings} />
-    <NavigationEvents onWillFocus={clearErrorMessage} />
+    <NavigationEvents onWillFocus={onFocus} />
     <Drawer.Navigator useLegacyImplementation>
         <Drawer.Screen name="Profile" component={ProfileScreen} />
         <Drawer.Screen name="Create Profile" component={ProfileCreateScreen} />
