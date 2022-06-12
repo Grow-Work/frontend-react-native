@@ -15,7 +15,11 @@ const dataReducer = (state, action) => {
             return {...state, accountType: action.payload}
         case 'fetch_account_profile':
             return {...state, accountProfile: action.payload}
-        case 'fetch_company_job_listings':
+        case 'edit_account_profile':
+            return {...state, accountProfile: action.payload}
+        case 'fetch_job_listings':
+            return {...state, jobListings: action.payload}
+        case 'edit_company_job_listings':
             return {...state, jobListings: action.payload}
         case 'fetch_newb_saved_jobs':
             return {...state, savedJobs: action.payload}
@@ -24,19 +28,17 @@ const dataReducer = (state, action) => {
         case 'clear_error_message':
             return {...state, errorMessage: ''}
         case 'reset_job_form':
-            return {...state, title: '', location: ''}
+            return {...state, title: '', company: ''}
         default:
             return state
     }
 }
 
-let accountType
-
 const fetchJobs = dispatch => async () => {
 
     try {
         const response = await serverConnectApi.get('/jobs')
-        dispatch({type: 'fetch_jobs', payload: response.data})
+        dispatch({type: 'fetch_jobs', payload: response.data.reverse()})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -47,7 +49,7 @@ const fetchNewbs = dispatch => async () => {
 
     try {
         const response = await serverConnectApi.get('/professionals')
-        dispatch({type: 'fetch_newbs', payload: response.data})
+        dispatch({type: 'fetch_newbs', payload: response.data.reverse()})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -58,7 +60,7 @@ const fetchCompanies = dispatch => async () => {
 
     try {
         const response = await serverConnectApi.get('/companies')
-        dispatch({type: 'fetch_companies', payload: response.data})
+        dispatch({type: 'fetch_companies', payload: response.data.reverse()})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -66,7 +68,7 @@ const fetchCompanies = dispatch => async () => {
 }
 
 const getAccountType = dispatch => async () => {
-    accountType = await AsyncStorage.getItem('accountType')
+    const accountType = await AsyncStorage.getItem('accountType')
     if (accountType) {
         dispatch({type:'get_account_type', payload: accountType})
     } else {
@@ -74,11 +76,12 @@ const getAccountType = dispatch => async () => {
     }
 }
 
-const fetchCompanyJobListings = dispatch => async () => {
-
+const fetchJobListings = dispatch => async () => {
+    console.log("fetchjoblistings called")
     try {
-        const response = await serverConnectApi.get('/account/company/job-listings')
-        dispatch({type: 'fetch_company_job_listings', payload: response.data})
+        const company = await serverConnectApi.get('/account/job-listings')
+        // const response = await serverConnectApi.get('/account/saved-jobs')
+        dispatch({type: 'fetch_job_listings', payload: company.data.reverse()})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -88,7 +91,10 @@ const fetchCompanyJobListings = dispatch => async () => {
 const createJobListing = dispatch => async ({title, company}) => {
     console.log("createjoblisting function")
     try {
-        const response = await serverConnectApi.post('/account/company/job-listings', {title, company})
+        await serverConnectApi.post('/account/job-listings', {title, company})
+        const response = await serverConnectApi.get('/account/job-listings')
+        dispatch({type: 'fetch_job_listings', payload: response.data})
+        console.log("create response", response.data)
         dispatch({type: 'reset_job_form'})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
@@ -98,7 +104,8 @@ const createJobListing = dispatch => async ({title, company}) => {
 const editJobListing = dispatch => async ({title, company}) => {
 
     try {
-        await serverConnectApi.put('/account/company/job-listings', {title, company})
+        const response = await serverConnectApi.put('/account/job-listings', {title, company})
+        dispatch({type: 'edit_company_job_listings', payload: response.data})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -107,7 +114,7 @@ const editJobListing = dispatch => async ({title, company}) => {
 const deleteJobListing = dispatch => async () => {
 
     try {
-        await serverConnectApi.delete('/account/company/job-listings')
+        await serverConnectApi.delete('/account/job-listings')
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -115,72 +122,41 @@ const deleteJobListing = dispatch => async () => {
 
 const fetchProfile = dispatch => async () => {
     try {
-        const company = await serverConnectApi.get('/account/company/profile')
-        const newb = await serverConnectApi.get('/account/professional/profile')
-        if (accountType == "company") {
-            console.log("company account")
-            dispatch({type: 'fetch_account_profile', payload: company.data})
-        } else {
-            console.log("not company account")
-            dispatch({type: 'fetch_account_profile', payload: newb.data})
-        }
+        const response = await serverConnectApi.get('/account/profile')
+            dispatch({type: 'fetch_account_profile', payload: response.data})
+
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
 
 }
 
-const createCompanyProfile = dispatch => async ({name, email, location}) => {
+const createProfile = dispatch => async ({name, email, location, first_name, last_name}) => {
 
     try {
-        await serverConnectApi.post('/account/company/profile', {name, email, location})
+        await serverConnectApi.post('/account/profile', {name, email, location, first_name, last_name})
         // navigate('Account')
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
 }
 
-const editCompanyProfile = dispatch => async ({name, location, email}) => {
+const editProfile = dispatch => async ({name, location, email}) => {
 
     try {
-        await serverConnectApi.put('/account/company/profile', {name, location, email})
+        const company = await serverConnectApi.put('/account/profile', {name, location, email})
+        console.log("edit response:", company.data)
+        dispatch({type: 'edit_account_profile', payload: company.data})
+
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
 }
 
-const deleteCompanyProfile = dispatch => async () => {
+const deleteProfile = dispatch => async () => {
 
     try {
-        await serverConnectApi.delete('/account/company/profile')
-    } catch (error) {
-        dispatch({type: 'add_error', payload: `${error}`})
-    }
-}
-
-const createNewbProfile = dispatch => async ({first_name, email, location}) => {
-
-    try {
-        const response = await serverConnectApi.post('/account/professional/profile', {first_name, email, location})
-        navigate('Account')
-    } catch (error) {
-        dispatch({type: 'add_error', payload: `${error}`})
-    }
-}
-
-const editNewbProfile = dispatch => async ({first_name, location}) => {
-
-    try {
-        await serverConnectApi.put('/account/professional/profile', {first_name, location})
-    } catch (error) {
-        dispatch({type: 'add_error', payload: `${error}`})
-    }
-}
-
-const deleteNewbProfile = dispatch => async () => {
-
-    try {
-        await serverConnectApi.delete('/account/professional/profile')
+        await serverConnectApi.delete('/account/profile')
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -193,6 +169,20 @@ const clearErrorMessage = dispatch => () => {
 
 export const {Provider, Context} = CreateContext(
     dataReducer,
-    {clearErrorMessage, getAccountType, fetchCompanies, createJobListing, fetchNewbs, fetchJobs, deleteCompanyProfile, deleteNewbProfile, deleteJobListing, editCompanyProfile, editJobListing, editNewbProfile, createNewbProfile, fetchProfile, createCompanyProfile, fetchCompanyJobListings},
+        {
+        clearErrorMessage, 
+        getAccountType, 
+        fetchNewbs, 
+        fetchJobs, 
+        fetchCompanies, 
+        fetchProfile, 
+        createProfile, 
+        editProfile, 
+        deleteProfile, 
+        fetchJobListings,
+        createJobListing, 
+        editJobListing, 
+        deleteJobListing, 
+        },
     {accountType: null, errorMessage: ''}
 )

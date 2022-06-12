@@ -1,11 +1,15 @@
-import React, {useContext} from 'react'
-import { SafeAreaView, StyleSheet, FlatList, Text} from 'react-native'
+import React, {useContext, useEffect} from 'react'
+import { SafeAreaView, StyleSheet, FlatList, View, Text} from 'react-native'
 import { Context as DataContext } from '../../context/DataContext'
 import { List, Colors } from 'react-native-paper';
 
 const AccountJobsScreen = () => {
 
     const {state} = useContext(DataContext)
+
+    useEffect(() => {
+      console.log("job useEffect here")
+  }, [state.jobListings])
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
@@ -16,11 +20,12 @@ const AccountJobsScreen = () => {
         renderItem={({ item }) => {
           return (
             <List.Accordion
-            left={props => <List.Icon {...props} color={Colors.green600} icon="equal" />}
             title={item.title}>
-            <List.Item title={`Company: ${item.company}`} />
-            <List.Item 
-            title={item.location} />
+            <View style={styles.listing} >
+            <List.Icon color={Colors.green600} icon="eye" />
+            <List.Icon color={Colors.green600} icon="pencil-outline" />
+            <List.Icon color={Colors.green600} icon="trash-can-outline" />
+            </View>
           </List.Accordion>
           );
         }}
@@ -42,6 +47,10 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20
+    },
+    listing: {
+      display: 'flex',
+      flexDirection: 'row'
     }
 })
 

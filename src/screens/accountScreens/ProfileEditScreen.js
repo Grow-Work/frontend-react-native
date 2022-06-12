@@ -5,21 +5,21 @@ import { Context as DataContext } from '../../context/DataContext'
 
 const ProfileEditScreen = () => {
 
-    const {state, editCompanyProfile, editNewbProfile} = useContext(DataContext)
+    const {state, editProfile} = useContext(DataContext)
 
     return (
         <View style={styles.container}>
         {state.accountType === "company" ? 
             <CompanyProfileForm 
-                header="Edit Company Profile"
+                header="Edit Profile"
                 buttonText="Save"
-                onSubmit={editCompanyProfile}
+                onSubmit={editProfile}
             />
             : 
             <NewbProfileForm 
-                header="Edit Your Profile"
+                header="Edit Profile"
                 buttonText="Save"
-                onSubmit={editNewbProfile}
+                onSubmit={editProfile}
             />
         }
         </View>

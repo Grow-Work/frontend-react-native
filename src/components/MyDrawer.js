@@ -21,11 +21,12 @@ MyDrawer.navigationOptions = {
 
 function Drawers() {
 
-  const {state: {accountType}, getAccountType, clearErrorMessage, fetchProfile, fetchCompanyJobListings} = useContext(DataContext)
+  const {state: {accountType}, getAccountType, clearErrorMessage, fetchProfile, fetchJobListings} = useContext(DataContext)
   
   function onFocus() {
     getAccountType()
     fetchProfile()
+    fetchJobListings()
     clearErrorMessage()
   }
 
