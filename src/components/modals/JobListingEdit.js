@@ -1,12 +1,17 @@
-//this file is for playing around with and testing various things - component, libraries, etc.
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal, StyleSheet, Text, Pressable, SafeAreaView, View } from "react-native";
 import { Input } from 'react-native-elements'
 import { List, Colors } from 'react-native-paper';
 import { ScrollView } from 'react-navigation'
-import JobListingForm from '../components/JobListingForm'
+import { Context as DataContext } from "../../context/DataContext";
 
-const TestScreen = () => {
+const JobListingEdit= (props) => {
+
+    const {state, editJobListing} = useContext(DataContext)
+    console.log("editlisting state:", state)
+    const jobId = props.id
+    console.log("editlisting state props, jobId:", jobId)
+
     const [modalVisible, setModalVisible] = useState(false);
     const [company, setCompany] = useState('')
     const [description, setDescription] = useState('')
@@ -29,7 +34,8 @@ const TestScreen = () => {
         <View>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Edit Job Listing</Text>
-            {/* <Input 
+            <Text>{state.id}</Text>
+            <Input 
             label="Job Title" 
             value={title} 
             onChangeText={setTitle}
@@ -68,14 +74,27 @@ const TestScreen = () => {
             onChangeText={setApplyLink} 
             autoCapitalize="none"
             autoCorrect={false}
+            />
+            {/* <JobListingForm 
+                header="Create New Job Listing"
+                errorMessage={state.errorMessage}
+                buttonText="Add Job"
+                onSubmit={editJobListing}
             /> */}
-            <JobListingForm />
+            <View style={styles.listing} >
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {setModalVisible(!modalVisible); editJobListing({title, company, jobId}) }}
+              >
+              <Text style={styles.textStyle}>Save</Text>
+            </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
               >
-              <Text style={styles.textStyle}>Save</Text>
+              <Text style={styles.textStyle}>Cancel</Text>
             </Pressable>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -120,13 +139,14 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
     padding: 10,
+    margin: 5,
     paddingHorizontal: 10
   },
   buttonOpen: {
 
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "green",
   },
   textStyle: {
     color: "white",
@@ -137,7 +157,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontSize: 20,
     textAlign: "center"
+  },
+  listing: {
+    display: 'flex',
+    flexDirection: 'row'
   }
 });
 
-export default TestScreen;
+export default JobListingEdit;

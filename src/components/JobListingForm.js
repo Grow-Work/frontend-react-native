@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import { ScrollView } from 'react-navigation'
+import { Context as DataContext } from '../context/DataContext'
 
 const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
 
-    const [title, setTitle] = useState('')
+    const {state, createJobListing} = useContext(DataContext)
+
+    const [title, setTitle] = useState('test')
     const [company, setCompany] = useState('')
     const [description, setDescription] = useState('')
     const [compensation, setCompensation] = useState('')
     const [applyLink, setApplyLink] = useState('')
     const [location, setLocation] = useState('')
+
+    useEffect(() => {
+        console.log("jobcreate useEffect here", state)
+    }, [state])
     
     return (
         <>

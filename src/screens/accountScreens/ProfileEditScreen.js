@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import { StyleSheet, View } from 'react-native'
 import CompanyProfileForm from '../../components/CompanyProfileForm'
+import NewbProfileForm from '../../components/NewbProfileForm'
 import { Context as DataContext } from '../../context/DataContext'
 
 const ProfileEditScreen = () => {
