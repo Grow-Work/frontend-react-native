@@ -3,11 +3,11 @@ import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 
 const NavLink = ({navigation, touchText, linkTo}) => {
- return (
-    <TouchableOpacity onPress={() => navigation.navigate(linkTo)} >
-    <Text style={styles.link} >{touchText}</Text>
-    </TouchableOpacity>
- )
+    return (
+        <TouchableOpacity onPress={() => navigation.navigate(linkTo)} >
+            <Text style={styles.link} >{touchText}</Text>
+        </TouchableOpacity>
+    )
 }
 
 const styles = StyleSheet.create({

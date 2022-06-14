@@ -1,36 +1,41 @@
-import React, {useContext} from 'react'
-import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native'
+import React, {useContext, useEffect, useState} from 'react'
+import { SafeAreaView, StyleSheet, FlatList, View, Text} from 'react-native'
 import { Context as DataContext } from '../../context/DataContext'
-import { ListItem } from 'react-native-elements'
+import { List, Colors } from 'react-native-paper';
+import JobListingEdit from '../../components/modals/JobListingEdit';
 
 const AccountJobsScreen = () => {
 
     const {state} = useContext(DataContext)
+    const [jobId, setJobId] = useState("")
+
+    useEffect(() => {
+      console.log("job useEffect here")
+  }, [state.jobListings])
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
+          {/* <List.AccordionGroup expandedId={item._id}> */}
         {state.jobListings? 
         <FlatList
         data={state.jobListings}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => 
-                console.log("Hi!")
-            }
-            >
-              <ListItem>
-                <ListItem.Content>
-                  <ListItem.Title style={styles.header} >{item.title}</ListItem.Title>
-                  <Text>{item.company}</Text>
-                </ListItem.Content>
-                {/* <ListItem.Accordion /> */}
-              </ListItem>
-            </TouchableOpacity>
+            <List.Accordion
+            theme={{ colors: { primary: '#2e9103' }}}
+            title={item.title}>
+            <View style={styles.listing} >
+            <List.Icon color={Colors.green600} icon="eye" />
+            <JobListingEdit id={item._id} />
+            <List.Icon color={Colors.green600} icon="trash-can-outline" />
+            </View>
+            </List.Accordion>
           );
         }}
       />
       : <Text>Loading...</Text>}
+      {/* </List.AccordionGroup> */}
         </SafeAreaView>
         )
 }
@@ -47,6 +52,10 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20
+    },
+    listing: {
+      display: 'flex',
+      flexDirection: 'row'
     }
 })
 

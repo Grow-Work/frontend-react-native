@@ -15,10 +15,8 @@ const CompanyProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
         <Input 
             label="Name" 
             value={name} 
-            onChangeText={setName} 
-            autoCapitalize="none"
+            onChangeText={setName}
             autoCorrect={false}
-            secureTextEntry
             />
         <Input 
             label="Email" 
@@ -30,10 +28,8 @@ const CompanyProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
         <Input 
             label="Location" 
             value={location} 
-            onChangeText={setLocation} 
-            autoCapitalize="none"
+            onChangeText={setLocation}
             autoCorrect={false}
-            secureTextEntry
             />
 
         <Text style={styles.errorMessage} >{errorMessage}</Text>

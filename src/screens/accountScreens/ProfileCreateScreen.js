@@ -1,11 +1,29 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useContext } from 'react'
+import { StyleSheet, View } from 'react-native'
+import CompanyProfileForm from '../../components/CompanyProfileForm'
+import NewbProfileForm from '../../components/NewbProfileForm'
+import { Context as DataContext } from '../../context/DataContext'
 
 const ProfileCreateScreen = () => {
+
+    const {state, createCompanyProfile, createNewbProfile} = useContext(DataContext)
+
     return (
         <View style={styles.container}>
-        <Text style={styles.header} >Profile Create Screen</Text>
-        <Text style={styles.text} >This screen will be conditionally rendered.</Text>
+        {state.accountType === "company" ? 
+            <CompanyProfileForm 
+                header="Create Company Profile"
+                buttonText="Save"
+                onSubmit={createCompanyProfile}
+            />
+            : 
+            <NewbProfileForm 
+                header="Create Your Profile"
+                buttonText="Save"
+                onSubmit={createNewbProfile}
+            />
+        }
+        
         </View>
         )
 }

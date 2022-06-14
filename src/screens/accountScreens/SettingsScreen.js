@@ -10,7 +10,7 @@ const SettingsScreen = () => {
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >Dark and light mode options will be here.</Text>
+        <Text style={styles.header} >Change email and password will go here. And maybe delete account?</Text>
         <Text></Text>
         <Button style={styles.button} title="Sign Out" onPress={signout} />
         </SafeAreaView>

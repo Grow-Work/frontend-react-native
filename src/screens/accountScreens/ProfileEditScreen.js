@@ -1,14 +1,30 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import {FontAwesome} from '@expo/vector-icons'
+import React, {useContext} from 'react'
+import { StyleSheet, View } from 'react-native'
+import CompanyProfileForm from '../../components/CompanyProfileForm'
+import NewbProfileForm from '../../components/NewbProfileForm'
+import { Context as DataContext } from '../../context/DataContext'
 
 const ProfileEditScreen = () => {
+
+    const {state, editProfile} = useContext(DataContext)
+
     return (
         <View style={styles.container}>
-        <Text style={styles.header} >Profile Edit Screen</Text>
-        <Text style={styles.text} >This screen will be conditionally rendered.</Text>
+        {state.accountType === "company" ? 
+            <CompanyProfileForm 
+                header="Edit Profile"
+                buttonText="Save"
+                onSubmit={editProfile}
+            />
+            : 
+            <NewbProfileForm 
+                header="Edit Profile"
+                buttonText="Save"
+                onSubmit={editProfile}
+            />
+        }
         </View>
-        )
+    )
 }
 
 const styles = StyleSheet.create({
