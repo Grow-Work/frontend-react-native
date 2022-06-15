@@ -16,6 +16,8 @@ import CompanyDetailScreen from './src/screens/CompanyDetailScreen';
 import JobListScreen from './src/screens/JobListScreen';
 import JobDetailScreen from './src/screens/JobDetailScreen';
 import MyDrawer from './src/components/MyDrawer';
+import ProfileCreateScreen from './src/screens/accountScreens/ProfileCreateScreen';
+import WelcomeScreen from './src/screens/authScreens/WelcomeScreen';
 
 const NewbProfileListFlow = createStackNavigator({
   NewbProfileList: NewbProfileListScreen,
@@ -53,6 +55,8 @@ const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator ({
     Signup: SignupScreen,
     Signin: SigninScreen,
+    Welcome: WelcomeScreen,
+    Create: ProfileCreateScreen
   }),
   mainFlow: createBottomTabNavigator({
     Account: MyDrawer,

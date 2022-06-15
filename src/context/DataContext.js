@@ -137,7 +137,7 @@ const createProfile = dispatch => async ({name, email, location, first_name, las
 
     try {
         await serverConnectApi.post('/account/profile', {name, email, location, first_name, last_name, phone, sector, description, skills, bio})
-        // navigate('Account')
+        navigate('Account')
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }

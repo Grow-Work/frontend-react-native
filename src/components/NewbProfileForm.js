@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import { ScrollView } from 'react-navigation'
+import { Context as DataContext } from '../context/DataContext'
 
 const NewbProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
+    const {state} = useContext(DataContext)
 
     const [email, setEmail] = useState('')
     const [first_name, setFirstName] = useState('')

@@ -6,7 +6,7 @@ import { Context as DataContext } from '../../context/DataContext'
 
 const ProfileCreateScreen = () => {
 
-    const {state, createCompanyProfile, createNewbProfile} = useContext(DataContext)
+    const {state, createProfile} = useContext(DataContext)
 
     return (
         <View style={styles.container}>
@@ -14,16 +14,15 @@ const ProfileCreateScreen = () => {
             <CompanyProfileForm 
                 header="Create Company Profile"
                 buttonText="Save"
-                onSubmit={createCompanyProfile}
+                onSubmit={createProfile}
             />
             : 
             <NewbProfileForm 
                 header="Create Your Profile"
                 buttonText="Save"
-                onSubmit={createNewbProfile}
+                onSubmit={createProfile}
             />
         }
-        
         </View>
         )
 }
