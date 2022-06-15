@@ -40,7 +40,6 @@ const JobListingEdit= (props) => {
             label="Job Title" 
             value={title} 
             onChangeText={setTitle}
-            autoCorrect={false}
             />
             <Input 
             label="Company" 
@@ -51,29 +50,24 @@ const JobListingEdit= (props) => {
         <Input 
             label="Description" 
             value={description} 
-            onChangeText={setDescription} 
-            autoCapitalize="none"
+            onChangeText={setDescription}
             autoCorrect={false}
             />
             <Input 
             label="Compensation" 
             value={compensation} 
-            onChangeText={setCompensation} 
-            autoCapitalize="none"
+            onChangeText={setCompensation}
             autoCorrect={false}
             />
             <Input 
             label="Job Type" 
             value={job_type} 
-            onChangeText={setjob_type} 
-            autoCapitalize="none"
-            autoCorrect={false}
+            onChangeText={setjob_type}
             />
             <Input 
             label="Location" 
             value={location} 
-            onChangeText={setLocation} 
-            autoCapitalize="none"
+            onChangeText={setLocation}
             autoCorrect={false}
             />
             <Input 

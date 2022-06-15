@@ -30,14 +30,13 @@ const ProfileScreen = () => {
             <Text style={styles.text} >
                 {profile.location}
                 {'\n'}{'\n'}
-                {profile.sector}
+                Sector: {profile.sector}
+                {'\n'}{'\n'}
+                {profile.description}
                 {'\n'}{'\n'}
                 {profile.email}
                 {'\n'}{'\n'}
                 {profile.phone}
-                {'\n'}{'\n'}
-                {profile.description}
-                {'\n'}{'\n'}
                 </Text>
                 </ScrollView>
             </>

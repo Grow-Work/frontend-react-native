@@ -7,13 +7,22 @@ const NewbProfileDetailScreen = ({navigation}) => {
 
     const {state} = useContext(DataContext)
     const _id = navigation.getParam('_id')
-    const newb = state.newbs.find(t => t._id === _id)
+    const profile = state.newbs.find(t => t._id === _id)
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >{newb.first_name}</Text>
-        <Text style={styles.text} >{newb.location}</Text>
-        <Text style={styles.text} >And other data here...</Text>
+        <Text style={styles.header}>{profile.first_name} {profile.last_name}</Text>
+            <Text style={styles.text} >
+                {profile.location}
+                {'\n'}{'\n'}
+                {profile.bio}
+                {'\n'}{'\n'}
+                {profile.skills}
+                {'\n'}{'\n'}
+                {profile.email}
+                {'\n'}{'\n'}
+                {profile.phone}
+                </Text>
         </SafeAreaView>
         )
 }
