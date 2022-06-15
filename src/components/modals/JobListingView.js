@@ -9,7 +9,6 @@ const JobListingView= (props) => {
 
     const {state} = useContext(DataContext)
     const _id = props.id
-
     const job = state.jobListings.find(t => t._id === _id)
 
     const [modalVisible, setModalVisible] = useState(false);

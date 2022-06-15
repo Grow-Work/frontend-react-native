@@ -115,10 +115,12 @@ const editJobListing = dispatch => async ({title, company, description, compensa
     }
 }
 
-const deleteJobListing = dispatch => async () => {
+const deleteJobListing = dispatch => async ({_id}) => {
 
     try {
-        await serverConnectApi.delete('/account/job-listings')
+        await serverConnectApi.delete(`/account/job-listings/${_id}`)
+        const response = await serverConnectApi.get('/account/job-listings')
+        dispatch({type: 'fetch_job_listings', payload: response.data})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }

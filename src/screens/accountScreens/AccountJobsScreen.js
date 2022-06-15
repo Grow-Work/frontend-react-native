@@ -4,6 +4,7 @@ import { Context as DataContext } from '../../context/DataContext'
 import { List, Colors } from 'react-native-paper';
 import JobListingEdit from '../../components/modals/JobListingEdit';
 import JobListingView from '../../components/modals/JobListingView';
+import JobListingDelete from '../../components/modals/JobListingDelete';
 import { ScrollView } from 'react-navigation'
 
 const AccountJobsScreen = () => {
@@ -29,7 +30,7 @@ const AccountJobsScreen = () => {
             {/* <List.Icon color={Colors.green600} icon="eye" /> */}
             <JobListingView id={item._id} />
             <JobListingEdit id={item._id} />
-            <List.Icon color={Colors.green600} icon="trash-can-outline" />
+            <JobListingDelete id={item._id} />
             </View>
             </List.Accordion>
           );

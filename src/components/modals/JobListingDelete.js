@@ -8,7 +8,8 @@ import { Context as DataContext } from "../../context/DataContext";
 const JobListingDelete= (props) => {
 
     const {state, deleteJobListing} = useContext(DataContext)
-    const jobId = props.id
+    const _id = props.id
+    const job = state.jobListings.find(t => t._id === _id)
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -25,13 +26,13 @@ const JobListingDelete= (props) => {
         <ScrollView>
         <View>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Are you sure you want to delete ${state.jobListing.title}</Text>
+            <Text style={styles.modalText}>Are you sure you want to delete job listing: {job.title}</Text>
             <View style={styles.listing} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); deleteJobListing({title, company, jobId}) }}
+              onPress={() => {setModalVisible(!modalVisible); deleteJobListing({_id}) }}
               >
-              <Text style={styles.textStyle}>Save</Text>
+              <Text style={styles.textStyle}>Delete</Text>
             </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -47,7 +48,7 @@ const JobListingDelete= (props) => {
       <Pressable
         onPress={() => setModalVisible(true)}
       >
-        <List.Icon color={Colors.green600} icon="pencil-outline" />
+        <List.Icon color={Colors.green600} icon="trash-can-outline" />
       </Pressable>
     </SafeAreaView>
   );
