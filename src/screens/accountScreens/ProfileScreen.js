@@ -8,12 +8,11 @@ const ProfileScreen = () => {
     const {state} = useContext(DataContext)
 
     useEffect(() => {
-        console.log("profile useEffect here")
+        
     }, [state.accountProfile])
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-            {console.log("profile screen account:", state.accountType)}
         {state.accountProfile? 
             <>
             <Text style={styles.header} >{state.accountProfile.name}</Text>

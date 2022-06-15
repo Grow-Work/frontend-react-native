@@ -3,19 +3,19 @@ import { SafeAreaView, StyleSheet, FlatList, View, Text} from 'react-native'
 import { Context as DataContext } from '../../context/DataContext'
 import { List, Colors } from 'react-native-paper';
 import JobListingEdit from '../../components/modals/JobListingEdit';
+import JobListingView from '../../components/modals/JobListingView';
+import { ScrollView } from 'react-navigation'
 
 const AccountJobsScreen = () => {
 
     const {state} = useContext(DataContext)
-    const [jobId, setJobId] = useState("")
 
     useEffect(() => {
-      console.log("job useEffect here")
   }, [state.jobListings])
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-          {/* <List.AccordionGroup expandedId={item._id}> */}
+        <ScrollView nestedScrollEnabled={true}>
         {state.jobListings? 
         <FlatList
         data={state.jobListings}
@@ -26,7 +26,8 @@ const AccountJobsScreen = () => {
             theme={{ colors: { primary: '#2e9103' }}}
             title={item.title}>
             <View style={styles.listing} >
-            <List.Icon color={Colors.green600} icon="eye" />
+            {/* <List.Icon color={Colors.green600} icon="eye" /> */}
+            <JobListingView id={item._id} />
             <JobListingEdit id={item._id} />
             <List.Icon color={Colors.green600} icon="trash-can-outline" />
             </View>
@@ -35,7 +36,7 @@ const AccountJobsScreen = () => {
         }}
       />
       : <Text>Loading...</Text>}
-      {/* </List.AccordionGroup> */}
+      </ScrollView>
         </SafeAreaView>
         )
 }

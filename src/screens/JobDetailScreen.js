@@ -11,9 +11,24 @@ const JobDetailScreen = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        <Text style={styles.header} >{job.title}</Text>
-        <Text style={styles.text} >{job.company}</Text>
-        <Text style={styles.text} >And other data here...</Text>
+            <Text style={styles.header} >{job.title}</Text>
+            <Text style={styles.text}>
+                Company: {job.company}
+                {'\n'}{'\n'}
+                Description: {job.description}
+                {'\n'}{'\n'}
+                Compensation: {job.compensation}
+                {'\n'}{'\n'}
+                Required Skills: {job.required_skills}
+                {'\n'}{'\n'}
+                Preferred Skills: {job.preferred_skills}
+                {'\n'}{'\n'}
+                Location: {job.location}
+                {'\n'}{'\n'}
+                {job.job_type}
+                {'\n'}{'\n'}
+                {job.applyLink}
+             </Text>
         </SafeAreaView>
         )
 }
@@ -21,7 +36,7 @@ const JobDetailScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     header: {
         fontSize: 30,
-        marginBottom: 10
+        marginBottom: 20
     },
     container: {
         margin: 15,

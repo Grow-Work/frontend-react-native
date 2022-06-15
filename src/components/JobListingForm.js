@@ -8,7 +8,7 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
 
     const {state, createJobListing} = useContext(DataContext)
 
-    const [title, setTitle] = useState('test')
+    const [title, setTitle] = useState('')
     const [company, setCompany] = useState('')
     const [description, setDescription] = useState('')
     const [compensation, setCompensation] = useState('')
@@ -16,7 +16,7 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
     const [location, setLocation] = useState('')
 
     useEffect(() => {
-        console.log("jobcreate useEffect here", state)
+        
     }, [state])
     
     return (

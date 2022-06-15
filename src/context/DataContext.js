@@ -20,7 +20,7 @@ const dataReducer = (state, action) => {
         case 'fetch_job_listings':
             return {...state, jobListings: action.payload}
         case 'edit_company_job_listings':
-            return {...state, jobListings: action.payload}
+            return {...state, formValues: action.payload}
         case 'fetch_newb_saved_jobs':
             return {...state, savedJobs: action.payload}
         case 'add_error':
@@ -76,8 +76,12 @@ const getAccountType = dispatch => async () => {
     }
 }
 
+const handleFormChanges = dispatch => (setFormValues) => {
+    dispatch({type: 'edit_company_job_listings', payload: setFormValues})
+}
+
 const fetchJobListings = dispatch => async () => {
-    console.log("fetchjoblistings called")
+    
     try {
         const company = await serverConnectApi.get('/account/job-listings')
         // const response = await serverConnectApi.get('/account/saved-jobs')
@@ -89,25 +93,23 @@ const fetchJobListings = dispatch => async () => {
 }
 
 const createJobListing = dispatch => async ({title, company}) => {
-    console.log("createjoblisting function")
+    
     try {
         await serverConnectApi.post('/account/job-listings', {title, company})
         const response = await serverConnectApi.get('/account/job-listings')
         dispatch({type: 'fetch_job_listings', payload: response.data})
-        console.log("create response", response.data)
         dispatch({type: 'reset_job_form'})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
 }
 
-const editJobListing = dispatch => async ({title, company, jobId}) => {
-    console.log("editjoblisting:", title, company, jobId)
+const editJobListing = dispatch => async ({title, company, description, compensation, applyLink, location, required_skills, preferred_skills, _id}) => {
+   
     try {
-        await serverConnectApi.put(`/account/job-listings/${jobId}`, {title, company})
+        await serverConnectApi.put(`/account/job-listings/${_id}`, {title, company, description, compensation, applyLink, location, required_skills, preferred_skills})
         const response = await serverConnectApi.get('/account/job-listings')
-        dispatch({type: 'edit_company_job_listings', payload: response.data})
-        console.log("edit response", response)
+        dispatch({type: 'fetch_job_listings', payload: response.data})
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
@@ -146,9 +148,8 @@ const createProfile = dispatch => async ({name, email, location, first_name, las
 const editProfile = dispatch => async ({name, location, email}) => {
 
     try {
-        const company = await serverConnectApi.put('/account/profile', {name, location, email})
-        console.log("edit response:", company.data)
-        dispatch({type: 'edit_account_profile', payload: company.data})
+        const response = await serverConnectApi.put('/account/profile', {name, location, email})
+        dispatch({type: 'edit_account_profile', payload: response.data})
 
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})

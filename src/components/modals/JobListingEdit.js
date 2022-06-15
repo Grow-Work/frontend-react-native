@@ -7,18 +7,31 @@ import { Context as DataContext } from "../../context/DataContext";
 
 const JobListingEdit= (props) => {
 
-    const {state, editJobListing} = useContext(DataContext)
-    console.log("editlisting state:", state)
-    const jobId = props.id
-    console.log("editlisting state props, jobId:", jobId)
+    const {state, editJobListing, handleFormChanges} = useContext(DataContext)
+    const _id = props.id
+
+    const job = state.jobListings.find(t => t._id === _id)
+
+    // const initialFormValues = {
+    //   title: job.title,
+    //   company: job.company,
+    //   description: job.description,
+    //   compensation: job.compensation,
+    //   applyLink: job.applyLink,
+    //   location: job.location 
+    // }
 
     const [modalVisible, setModalVisible] = useState(false);
-    const [company, setCompany] = useState('')
-    const [description, setDescription] = useState('')
-    const [compensation, setCompensation] = useState('')
-    const [applyLink, setApplyLink] = useState('')
-    const [location, setLocation] = useState('')
-    const [title, setTitle] = useState("")
+    // const [ formValues, setFormValues] = useState(initialFormValues)
+    const [company, setCompany] = useState(job.company)
+    const [description, setDescription] = useState(job.description)
+    const [compensation, setCompensation] = useState(job.compensation)
+    const [applyLink, setApplyLink] = useState(job.applyLink)
+    const [location, setLocation] = useState(job.location)
+    const [title, setTitle] = useState(job.title)
+    const [jobType, setJobType] = useState(job.job_type)
+    const [required_skills, setrequired_skills] = useState(job.required_skills)
+    const [preferred_skills, setpreferred_skills] = useState(job.preferred_skills)
 
   return (
     <SafeAreaView style={styles.centeredView} forceInset={{top: 'always'}}>
@@ -34,7 +47,6 @@ const JobListingEdit= (props) => {
         <View>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Edit Job Listing</Text>
-            <Text>{state.id}</Text>
             <Input 
             label="Job Title" 
             value={title} 
@@ -62,6 +74,13 @@ const JobListingEdit= (props) => {
             autoCorrect={false}
             />
             <Input 
+            label="Job Type" 
+            value={jobType} 
+            onChangeText={setJobType} 
+            autoCapitalize="none"
+            autoCorrect={false}
+            />
+            <Input 
             label="Location" 
             value={location} 
             onChangeText={setLocation} 
@@ -75,16 +94,24 @@ const JobListingEdit= (props) => {
             autoCapitalize="none"
             autoCorrect={false}
             />
-            {/* <JobListingForm 
-                header="Create New Job Listing"
-                errorMessage={state.errorMessage}
-                buttonText="Add Job"
-                onSubmit={editJobListing}
-            /> */}
+            <Input 
+            label="Required Skills" 
+            value={required_skills} 
+            onChangeText={setrequired_skills} 
+            autoCapitalize="none"
+            autoCorrect={false}
+            />
+            <Input 
+            label="Preferred Skills" 
+            value={preferred_skills} 
+            onChangeText={setpreferred_skills} 
+            autoCapitalize="none"
+            autoCorrect={false}
+            />
             <View style={styles.listing} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); editJobListing({title, company, jobId}) }}
+              onPress={() => {setModalVisible(!modalVisible); editJobListing({title, company, description, compensation, applyLink, location, required_skills, preferred_skills, _id}) }}
               >
               <Text style={styles.textStyle}>Save</Text>
             </Pressable>
@@ -100,11 +127,9 @@ const JobListingEdit= (props) => {
       </ScrollView>
       </Modal>
       <Pressable
-        // style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
         <List.Icon color={Colors.green600} icon="pencil-outline" />
-        {/* <Text style={styles.textStyle}>Edit</Text> */}
       </Pressable>
     </SafeAreaView>
   );
@@ -117,9 +142,6 @@ const styles = StyleSheet.create({
   },
   centeredView2: {
     flex: 1,
-    // justifyContent: "center",
-    // alignContent: "center",
-    // marginTop: 22
   },
   modalView: {
     margin: 10,

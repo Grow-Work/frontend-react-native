@@ -27,7 +27,6 @@ function Drawers() {
     getAccountType()
     fetchProfile()
     fetchJobListings()
-    clearErrorMessage()
   }
 
   return (
