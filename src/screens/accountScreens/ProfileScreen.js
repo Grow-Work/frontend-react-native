@@ -4,10 +4,12 @@ import { Context as DataContext } from '../../context/DataContext'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import CompanyProfileEdit from '../../components/modals/CompanyProfileEdit'
 import NewbProfileEdit from '../../components/modals/NewbProfileEdit'
+import { ScrollView } from 'react-navigation'
 
 const ProfileScreen = () => {
 
     const {state} = useContext(DataContext)
+    const profile = state.accountProfile
 
     useEffect(() => {
         
@@ -15,25 +17,55 @@ const ProfileScreen = () => {
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-        {state.accountProfile? 
+        {profile? 
             <>
             {state.accountType === "company" ? 
+            <>
+            <ScrollView>
             <CompanyProfileEdit 
                 header="Edit Profile"
                 buttonText="Save"
             />
+            <Text style={styles.header}>{profile.name}</Text>
+            <Text style={styles.text} >
+                {profile.location}
+                {'\n'}{'\n'}
+                {profile.sector}
+                {'\n'}{'\n'}
+                {profile.email}
+                {'\n'}{'\n'}
+                {profile.phone}
+                {'\n'}{'\n'}
+                {profile.description}
+                {'\n'}{'\n'}
+                </Text>
+                </ScrollView>
+            </>
             : 
+            <>
+            <ScrollView>
             <NewbProfileEdit
                 header="Edit Profile"
                 buttonText="Save"
             />
+            <Text style={styles.header}>{profile.first_name} {profile.last_name}</Text>
+            <Text style={styles.text} >
+                {profile.location}
+                {'\n'}{'\n'}
+                {profile.bio}
+                {'\n'}{'\n'}
+                {profile.email}
+                {'\n'}{'\n'}
+                {profile.phone}
+                {'\n'}{'\n'}
+                {profile.skills}
+                {'\n'}{'\n'}
+                </Text>
+            </ScrollView>
+            </>
             }
-            <Text style={styles.header} >{state.accountProfile.name}</Text>
-            <Text style={styles.text} >{state.accountProfile.location}</Text>
             </>
         : <Text>Loading...</Text>}
-        
-        
         </SafeAreaView>
         )
 }
@@ -45,8 +77,7 @@ const styles = StyleSheet.create({
     },
     container: {
         margin: 15,
-        flex: 1,
-        marginTop: 50
+        flex: 1
     },
     text: {
         fontSize: 20
