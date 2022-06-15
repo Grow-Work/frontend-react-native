@@ -104,10 +104,10 @@ const createJobListing = dispatch => async ({title, company}) => {
     }
 }
 
-const editJobListing = dispatch => async ({title, company, description, compensation, applyLink, location, required_skills, preferred_skills, _id}) => {
+const editJobListing = dispatch => async ({title, company, description, compensation, apply_link, location, job_type, required_skills, preferred_skills, _id}) => {
    
     try {
-        await serverConnectApi.put(`/account/job-listings/${_id}`, {title, company, description, compensation, applyLink, location, required_skills, preferred_skills})
+        await serverConnectApi.put(`/account/job-listings/${_id}`, {title, company, description, compensation, job_type, apply_link, location, required_skills, preferred_skills})
         const response = await serverConnectApi.get('/account/job-listings')
         dispatch({type: 'fetch_job_listings', payload: response.data})
     } catch (error) {

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Modal, StyleSheet, Text, Pressable, SafeAreaView, View } from "react-native";
-import { Input } from 'react-native-elements'
 import { List, Colors } from 'react-native-paper';
 import { ScrollView } from 'react-navigation'
 import { Context as DataContext } from "../../context/DataContext";
@@ -40,9 +39,11 @@ const JobListingView= (props) => {
                 {'\n'}{'\n'}
                 Location: {job.location}
                 {'\n'}{'\n'}
-                {job.job_type}
+                Type: {job.job_type}
+                {'\n'}{'\n'}
+                Apply: {job.apply_link}
              </Text>
-            <View style={styles.apply_link} >
+            <View style={styles.modalText} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}

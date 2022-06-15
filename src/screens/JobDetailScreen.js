@@ -27,7 +27,7 @@ const JobDetailScreen = ({navigation}) => {
                 {'\n'}{'\n'}
                 {job.job_type}
                 {'\n'}{'\n'}
-                {job.applyLink}
+                {job.apply_link}
              </Text>
         </SafeAreaView>
         )

@@ -17,7 +17,7 @@ const JobListingEdit= (props) => {
     //   company: job.company,
     //   description: job.description,
     //   compensation: job.compensation,
-    //   applyLink: job.applyLink,
+    //   apply_link: job.apply_link,
     //   location: job.location 
     // }
 
@@ -26,10 +26,10 @@ const JobListingEdit= (props) => {
     const [company, setCompany] = useState(job.company)
     const [description, setDescription] = useState(job.description)
     const [compensation, setCompensation] = useState(job.compensation)
-    const [applyLink, setApplyLink] = useState(job.applyLink)
+    const [apply_link, setapply_link] = useState(job.apply_link)
     const [location, setLocation] = useState(job.location)
     const [title, setTitle] = useState(job.title)
-    const [jobType, setJobType] = useState(job.job_type)
+    const [job_type, setjob_type] = useState(job.job_type)
     const [required_skills, setrequired_skills] = useState(job.required_skills)
     const [preferred_skills, setpreferred_skills] = useState(job.preferred_skills)
 
@@ -75,8 +75,8 @@ const JobListingEdit= (props) => {
             />
             <Input 
             label="Job Type" 
-            value={jobType} 
-            onChangeText={setJobType} 
+            value={job_type} 
+            onChangeText={setjob_type} 
             autoCapitalize="none"
             autoCorrect={false}
             />
@@ -89,8 +89,8 @@ const JobListingEdit= (props) => {
             />
             <Input 
             label="Apply Link" 
-            value={applyLink} 
-            onChangeText={setApplyLink} 
+            value={apply_link} 
+            onChangeText={setapply_link} 
             autoCapitalize="none"
             autoCorrect={false}
             />
@@ -111,7 +111,7 @@ const JobListingEdit= (props) => {
             <View style={styles.listing} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); editJobListing({title, company, description, compensation, applyLink, location, required_skills, preferred_skills, _id}) }}
+              onPress={() => {setModalVisible(!modalVisible); editJobListing({title, company, description, compensation, apply_link, job_type, location, required_skills, preferred_skills, _id}) }}
               >
               <Text style={styles.textStyle}>Save</Text>
             </Pressable>

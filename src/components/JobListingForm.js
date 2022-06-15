@@ -12,7 +12,7 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
     const [company, setCompany] = useState('')
     const [description, setDescription] = useState('')
     const [compensation, setCompensation] = useState('')
-    const [applyLink, setApplyLink] = useState('')
+    const [apply_link, setapply_link] = useState('')
     const [location, setLocation] = useState('')
 
     useEffect(() => {
@@ -58,8 +58,8 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
             />
             <Input 
                 label="Apply Link" 
-                value={applyLink} 
-                onChangeText={setApplyLink} 
+                value={apply_link} 
+                onChangeText={setapply_link} 
                 autoCapitalize="none"
                 autoCorrect={false}
             />
