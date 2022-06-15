@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Modal, StyleSheet, Text, Pressable, SafeAreaView, View } from "react-native";
-import { Input } from 'react-native-elements'
+import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import { List, Colors } from 'react-native-paper';
-import { ScrollView } from 'react-navigation'
 import { Context as DataContext } from "../../context/DataContext";
 
 const JobListingDelete= (props) => {
@@ -10,11 +8,10 @@ const JobListingDelete= (props) => {
     const {state, deleteJobListing} = useContext(DataContext)
     const _id = props.id
     const job = state.jobListings.find(t => t._id === _id)
-
     const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <SafeAreaView style={styles.centeredView} forceInset={{top: 'always'}}>
+    <View>
       <Modal
         animationType="slide"
         transparent={true}
@@ -23,8 +20,7 @@ const JobListingDelete= (props) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <ScrollView>
-        <View>
+        <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Are you sure you want to delete job listing: {job.title}</Text>
             <View style={styles.listing} >
@@ -43,24 +39,22 @@ const JobListingDelete= (props) => {
             </View>
           </View>
         </View>
-      </ScrollView>
       </Modal>
       <Pressable
         onPress={() => setModalVisible(true)}
       >
         <List.Icon color={Colors.green600} icon="trash-can-outline" />
       </Pressable>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   centeredView: {
-    alignItems: "center",
-    marginBottom: 15
-  },
-  centeredView2: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 15
   },
   modalView: {
     margin: 10,
@@ -82,9 +76,6 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     paddingHorizontal: 10
-  },
-  buttonOpen: {
-
   },
   buttonClose: {
     backgroundColor: "green",

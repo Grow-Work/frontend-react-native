@@ -4,11 +4,12 @@ import { List, Colors } from 'react-native-paper';
 import { ScrollView } from 'react-navigation'
 import { Context as DataContext } from "../../context/DataContext";
 
-const JobListingView= (props) => {
+const SavedJobsView= (props) => {
 
     const {state} = useContext(DataContext)
     const _id = props.id
-    const job = state.jobListings.find(t => t._id === _id)
+    //savedJobs needs to be added to data context
+    const job = state.savedJobs.find(t => t._id === _id)
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -114,4 +115,4 @@ const styles = StyleSheet.create({
 }
 });
 
-export default JobListingView;
+export default SavedJobsView;

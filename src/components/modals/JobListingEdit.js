@@ -34,7 +34,7 @@ const JobListingEdit= (props) => {
     const [preferred_skills, setpreferred_skills] = useState(job.preferred_skills)
 
   return (
-    <SafeAreaView style={styles.centeredView} forceInset={{top: 'always'}}>
+    <View>
       <Modal
         animationType="slide"
         transparent={true}
@@ -131,18 +131,11 @@ const JobListingEdit= (props) => {
       >
         <List.Icon color={Colors.green600} icon="pencil-outline" />
       </Pressable>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  centeredView: {
-    alignItems: "center",
-    marginBottom: 15
-  },
-  centeredView2: {
-    flex: 1,
-  },
   modalView: {
     margin: 10,
     backgroundColor: "white",
@@ -163,9 +156,6 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     paddingHorizontal: 10
-  },
-  buttonOpen: {
-
   },
   buttonClose: {
     backgroundColor: "green",
