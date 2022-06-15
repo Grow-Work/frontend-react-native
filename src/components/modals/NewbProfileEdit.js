@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import { Input } from 'react-native-elements'
 import { List, Colors } from 'react-native-paper';
@@ -19,6 +19,10 @@ const NewbProfileEdit= () => {
     const [bio, setBio] = useState(profile.bio)
     const [skills, setSkills] = useState(profile.skills)
     const [links, setLinks] = useState([profile.links])
+
+    useEffect(() => {
+        
+    }, [state.accountProfile])
 
   return (
     <View>
