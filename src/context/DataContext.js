@@ -76,10 +76,6 @@ const getAccountType = dispatch => async () => {
     }
 }
 
-const handleFormChanges = dispatch => (setFormValues) => {
-    dispatch({type: 'edit_company_job_listings', payload: setFormValues})
-}
-
 const fetchJobListings = dispatch => async () => {
     
     try {
@@ -137,20 +133,20 @@ const fetchProfile = dispatch => async () => {
 
 }
 
-const createProfile = dispatch => async ({name, email, location, first_name, last_name}) => {
+const createProfile = dispatch => async ({name, email, location, first_name, last_name, phone, sector, description, skills, bio}) => {
 
     try {
-        await serverConnectApi.post('/account/profile', {name, email, location, first_name, last_name})
+        await serverConnectApi.post('/account/profile', {name, email, location, first_name, last_name, phone, sector, description, skills, bio})
         // navigate('Account')
     } catch (error) {
         dispatch({type: 'add_error', payload: `${error}`})
     }
 }
 
-const editProfile = dispatch => async ({name, location, email}) => {
+const editProfile = dispatch => async ({name, email, location, first_name, last_name, phone, sector, description, skills, bio}) => {
 
     try {
-        const response = await serverConnectApi.put('/account/profile', {name, location, email})
+        const response = await serverConnectApi.put('/account/profile', {name, email, location, first_name, last_name, phone, sector, description, skills, bio})
         dispatch({type: 'edit_account_profile', payload: response.data})
 
     } catch (error) {

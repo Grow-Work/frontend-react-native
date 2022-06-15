@@ -5,22 +5,20 @@ import { List, Colors } from 'react-native-paper';
 import { ScrollView } from 'react-navigation'
 import { Context as DataContext } from "../../context/DataContext";
 
-const JobListingEdit= (props) => {
+const NewbProfileEdit= () => {
 
-    const {state, editJobListing} = useContext(DataContext)
-    const _id = props.id
-    const job = state.jobListings.find(t => t._id === _id)
+    const {state, editProfile} = useContext(DataContext)
+    const profile = state.accountProfile
 
     const [modalVisible, setModalVisible] = useState(false);
-    const [company, setCompany] = useState(job.company)
-    const [description, setDescription] = useState(job.description)
-    const [compensation, setCompensation] = useState(job.compensation)
-    const [apply_link, setapply_link] = useState(job.apply_link)
-    const [location, setLocation] = useState(job.location)
-    const [title, setTitle] = useState(job.title)
-    const [job_type, setjob_type] = useState(job.job_type)
-    const [required_skills, setrequired_skills] = useState(job.required_skills)
-    const [preferred_skills, setpreferred_skills] = useState(job.preferred_skills)
+    const [first_name, setFirst_Name] = useState(profile.first_name)
+    const [last_name, setLast_Name] = useState(profile.last_name)
+    const [location, setLocation] = useState(profile.location)
+    const [email, setEmail] = useState(profile.email)
+    const [phone, setPhone] = useState(profile.phone)
+    const [bio, setBio] = useState(profile.bio)
+    const [skills, setSkills] = useState(profile.skills)
+    const [links, setLinks] = useState([profile.links])
 
   return (
     <View>
@@ -35,72 +33,53 @@ const JobListingEdit= (props) => {
         <ScrollView>
         <View>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Edit Job Listing</Text>
+            <Text style={styles.modalText}>Edit Profile</Text>
             <Input 
-            label="Job Title" 
-            value={title} 
-            onChangeText={setTitle}
+            label="First Name" 
+            value={first_name} 
+            onChangeText={setFirst_Name}
             autoCorrect={false}
             />
             <Input 
-            label="Company" 
-            value={company} 
-            onChangeText={setCompany}
+            label="Last Name" 
+            value={last_name} 
+            onChangeText={setLast_Name}
             autoCorrect={false}
             />
         <Input 
-            label="Description" 
-            value={description} 
-            onChangeText={setDescription} 
+            label="Bio" 
+            value={bio} 
+            onChangeText={setBio}
+            autoCorrect={false}
+            />
+        <Input 
+            label="Skills" 
+            value={skills} 
+            onChangeText={setSkills}
+            />
+        <Input 
+            label="Email" 
+            value={email} 
+            onChangeText={setEmail}
             autoCapitalize="none"
             autoCorrect={false}
             />
-            <Input 
-            label="Compensation" 
-            value={compensation} 
-            onChangeText={setCompensation} 
-            autoCapitalize="none"
+        <Input 
+            label="Phone" 
+            value={phone} 
+            onChangeText={setPhone}
             autoCorrect={false}
             />
-            <Input 
-            label="Job Type" 
-            value={job_type} 
-            onChangeText={setjob_type} 
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-            <Input 
+        <Input 
             label="Location" 
             value={location} 
-            onChangeText={setLocation} 
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-            <Input 
-            label="Apply Link" 
-            value={apply_link} 
-            onChangeText={setapply_link} 
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-            <Input 
-            label="Required Skills" 
-            value={required_skills} 
-            onChangeText={setrequired_skills} 
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-            <Input 
-            label="Preferred Skills" 
-            value={preferred_skills} 
-            onChangeText={setpreferred_skills} 
-            autoCapitalize="none"
+            onChangeText={setLocation}
             autoCorrect={false}
             />
             <View style={styles.listing} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); editJobListing({title, company, description, compensation, apply_link, job_type, location, required_skills, preferred_skills, _id}) }}
+              onPress={() => {setModalVisible(!modalVisible); editProfile({email, first_name, last_name, phone, skills, bio, location}) }}
               >
               <Text style={styles.textStyle}>Save</Text>
             </Pressable>
@@ -165,4 +144,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default JobListingEdit;
+export default NewbProfileEdit;
