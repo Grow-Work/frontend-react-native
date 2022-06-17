@@ -80,7 +80,7 @@ const JobListingForm = ({header, errorMessage, onSubmit, buttonText}) => {
                 autoCorrect={false}
             />
             <Input 
-                label="Required Skills" 
+                label="Preferred Skills" 
                 value={form.preferred_skills} 
                 onChangeText={text => setForm({...form, preferred_skills: text})} 
                 autoCapitalize="none"

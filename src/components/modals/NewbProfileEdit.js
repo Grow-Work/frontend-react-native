@@ -18,7 +18,7 @@ const NewbProfileEdit= () => {
       phone: profile.phone,
       bio: profile.bio,
       skills: profile.skills
-  }
+    }
 
     const [form, setForm] = useState(initialFormValues)
     const [modalVisible, setModalVisible] = useState(false);

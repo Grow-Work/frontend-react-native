@@ -11,16 +11,20 @@ const JobListingEdit= (props) => {
     const _id = props.id
     const job = state.jobListings.find(t => t._id === _id)
 
+    const initialFormValues = {
+      title: job.title,
+      company: job.company,
+      description: job.description,
+      compensation: job.compensation,
+      job_type: job.job_type,
+      location: job.location,
+      apply_link: job.apply_link,
+      required_skills: job.required_skills,
+      preferred_skills: job.preferred_skills
+  }
+
+    const [form, setForm] = useState(initialFormValues)
     const [modalVisible, setModalVisible] = useState(false);
-    const [company, setCompany] = useState(job.company)
-    const [description, setDescription] = useState(job.description)
-    const [compensation, setCompensation] = useState(job.compensation)
-    const [apply_link, setapply_link] = useState(job.apply_link)
-    const [location, setLocation] = useState(job.location)
-    const [title, setTitle] = useState(job.title)
-    const [job_type, setjob_type] = useState(job.job_type)
-    const [required_skills, setrequired_skills] = useState(job.required_skills)
-    const [preferred_skills, setpreferred_skills] = useState(job.preferred_skills)
 
   return (
     <View>
@@ -38,63 +42,61 @@ const JobListingEdit= (props) => {
             <Text style={styles.modalText}>Edit Job Listing</Text>
             <Input 
             label="Job Title" 
-            value={title} 
-            onChangeText={setTitle}
+            value={form.title} 
+            onChangeText={text => setForm({...form, title: text})}
             />
             <Input 
             label="Company" 
-            value={company} 
-            onChangeText={setCompany}
+            value={form.company} 
+            onChangeText={text => setForm({...form, company: text})}
             autoCorrect={false}
             />
         <Input 
             label="Description" 
-            value={description} 
-            onChangeText={setDescription}
+            value={form.description} 
+            onChangeText={text => setForm({...form, description: text})}
             autoCorrect={false}
             />
             <Input 
             label="Compensation" 
-            value={compensation} 
-            onChangeText={setCompensation}
+            value={form.compensation} 
+            onChangeText={text => setForm({...form, compensation: text})}
             autoCorrect={false}
             />
             <Input 
             label="Job Type" 
-            value={job_type} 
-            onChangeText={setjob_type}
+            value={form.job_type} 
+            onChangeText={text => setForm({...form, job_type: text})}
             />
             <Input 
             label="Location" 
-            value={location} 
-            onChangeText={setLocation}
+            value={form.location} 
+            onChangeText={text => setForm({...form, location: text})}
             autoCorrect={false}
             />
             <Input 
             label="Apply Link" 
-            value={apply_link} 
-            onChangeText={setapply_link} 
+            value={form.apply_link} 
+            onChangeText={text => setForm({...form, apply_link: text})}
             autoCapitalize="none"
             autoCorrect={false}
             />
             <Input 
             label="Required Skills" 
-            value={required_skills} 
-            onChangeText={setrequired_skills} 
+            value={form.required_skills} 
+            onChangeText={text => setForm({...form, required_skills: text})} 
             autoCapitalize="none"
-            autoCorrect={false}
             />
             <Input 
             label="Preferred Skills" 
-            value={preferred_skills} 
-            onChangeText={setpreferred_skills} 
+            value={form.preferred_skills} 
+            onChangeText={text => setForm({...form, preferred_skills: text})} 
             autoCapitalize="none"
-            autoCorrect={false}
             />
             <View style={styles.listing} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); editJobListing({title, company, description, compensation, apply_link, job_type, location, required_skills, preferred_skills, _id}) }}
+              onPress={() => {setModalVisible(!modalVisible); editJobListing({form, _id}) }}
               >
               <Text style={styles.textStyle}>Save</Text>
             </Pressable>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import { Input } from 'react-native-elements'
 import { List, Colors } from 'react-native-paper';
@@ -10,14 +10,21 @@ const CompanyProfileEdit= () => {
     const {state, editProfile} = useContext(DataContext)
     const profile = state.accountProfile
 
+    const initialFormValues = {
+      name: profile.name,
+      description: profile.description,
+      location: profile.location,
+      sector: profile.sector,
+      phone: profile.phone,
+      email: profile.email
+    }
+
+    const [form, setForm] = useState(initialFormValues)
     const [modalVisible, setModalVisible] = useState(false);
-    const [name, setName] = useState(profile.name)
-    const [location, setLocation] = useState(profile.location)
-    const [sector, setSector] = useState(profile.sector)
-    const [email, setEmail] = useState(profile.email)
-    const [phone, setPhone] = useState(profile.phone)
-    const [description, setDescription] = useState(profile.description)
-    const [links, setLinks] = useState([profile.links])
+
+    useEffect(() => {
+        
+    }, [state.accountProfile])
 
   return (
     <View>
@@ -35,44 +42,44 @@ const CompanyProfileEdit= () => {
             <Text style={styles.modalText}>Edit Profile</Text>
             <Input 
             label="Name" 
-            value={name} 
-            onChangeText={setName}
+            value={form.name} 
+            onChangeText={text => setForm({...form, name: text})}
             autoCorrect={false}
             />
-        <Input 
-            label="Description" 
-            value={description} 
-            onChangeText={setDescription}
-            autoCorrect={false}
+            <Input 
+                label="Description" 
+                value={form.description} 
+                onChangeText={text => setForm({...form, description: text})}
+                autoCorrect={false}
             />
-        <Input 
-            label="Sector" 
-            value={sector} 
-            onChangeText={setSector}
+            <Input 
+                label="Sector" 
+                value={form.sector} 
+                onChangeText={text => setForm({...form, sector: text})}
             />
-        <Input 
-            label="Email" 
-            value={email} 
-            onChangeText={setEmail}
-            autoCapitalize="none"
-            autoCorrect={false}
+            <Input 
+                label="Location" 
+                value={form.location} 
+                onChangeText={text => setForm({...form, location: text})}
+                autoCorrect={false}
             />
-        <Input 
-            label="Phone" 
-            value={phone} 
-            onChangeText={setPhone}
-            autoCorrect={false}
+            <Input 
+                label="Email" 
+                value={form.email} 
+                onChangeText={text => setForm({...form, email: text})}
+                autoCapitalize="none"
+                autoCorrect={false}
             />
-        <Input 
-            label="Location" 
-            value={location} 
-            onChangeText={setLocation}
-            autoCorrect={false}
+            <Input 
+                label="Phone" 
+                value={form.phone} 
+                onChangeText={text => setForm({...form, phone: text})}
+                autoCorrect={false}
             />
             <View style={styles.listing} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); editProfile({email, name, phone, sector, description, location}) }}
+              onPress={() => {setModalVisible(!modalVisible); editProfile(form) }}
               >
               <Text style={styles.textStyle}>Save</Text>
             </Pressable>

@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect} from 'react'
 import { SafeAreaView, StyleSheet, FlatList, View, Text} from 'react-native'
 import { Context as DataContext } from '../../context/DataContext'
-import { List, Colors } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import JobListingEdit from '../../components/modals/JobListingEdit';
 import JobListingView from '../../components/modals/JobListingView';
 import JobListingDelete from '../../components/modals/JobListingDelete';
