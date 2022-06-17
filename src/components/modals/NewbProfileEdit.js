@@ -10,15 +10,18 @@ const NewbProfileEdit= () => {
     const {state, editProfile} = useContext(DataContext)
     const profile = state.accountProfile
 
+    const initialFormValues = {
+      first_name: profile.first_name,
+      last_name: profile.last_name,
+      location: profile.location,
+      email: profile.email,
+      phone: profile.phone,
+      bio: profile.bio,
+      skills: profile.skills
+  }
+
+    const [form, setForm] = useState(initialFormValues)
     const [modalVisible, setModalVisible] = useState(false);
-    const [first_name, setFirst_Name] = useState(profile.first_name)
-    const [last_name, setLast_Name] = useState(profile.last_name)
-    const [location, setLocation] = useState(profile.location)
-    const [email, setEmail] = useState(profile.email)
-    const [phone, setPhone] = useState(profile.phone)
-    const [bio, setBio] = useState(profile.bio)
-    const [skills, setSkills] = useState(profile.skills)
-    const [links, setLinks] = useState([profile.links])
 
     useEffect(() => {
         
@@ -40,50 +43,50 @@ const NewbProfileEdit= () => {
             <Text style={styles.modalText}>Edit Profile</Text>
             <Input 
             label="First Name" 
-            value={first_name} 
-            onChangeText={setFirst_Name}
+            value={form.first_name} 
+            onChangeText={text => setForm({...form, first_name: text})}
             autoCorrect={false}
             />
             <Input 
             label="Last Name" 
-            value={last_name} 
-            onChangeText={setLast_Name}
+            value={form.last_name} 
+            onChangeText={text => setForm({...form, last_name: text})}
             autoCorrect={false}
             />
         <Input 
             label="Bio" 
-            value={bio} 
-            onChangeText={setBio}
+            value={form.bio} 
+            onChangeText={text => setForm({...form, bio: text})}
             autoCorrect={false}
             />
         <Input 
             label="Skills" 
-            value={skills} 
-            onChangeText={setSkills}
+            value={form.skills} 
+            onChangeText={text => setForm({...form, skills: text})}
             />
         <Input 
             label="Email" 
-            value={email} 
-            onChangeText={setEmail}
+            value={form.email} 
+            onChangeText={text => setForm({...form, email: text})}
             autoCapitalize="none"
             autoCorrect={false}
             />
         <Input 
             label="Phone" 
-            value={phone} 
-            onChangeText={setPhone}
+            value={form.phone} 
+            onChangeText={text => setForm({...form, phone: text})}
             autoCorrect={false}
             />
         <Input 
             label="Location" 
-            value={location} 
-            onChangeText={setLocation}
+            value={form.location} 
+            onChangeText={text => setForm({...form, location: text})}
             autoCorrect={false}
             />
             <View style={styles.listing} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); editProfile({email, first_name, last_name, phone, skills, bio, location}) }}
+              onPress={() => {setModalVisible(!modalVisible); editProfile(form) }}
               >
               <Text style={styles.textStyle}>Save</Text>
             </Pressable>

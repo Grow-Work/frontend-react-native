@@ -88,10 +88,10 @@ const fetchJobListings = dispatch => async () => {
 
 }
 
-const createJobListing = dispatch => async ({title, company}) => {
-    
+const createJobListing = dispatch => async (form) => {
+   
     try {
-        await serverConnectApi.post('/account/job-listings', {title, company})
+        await serverConnectApi.post('/account/job-listings', form)
         const response = await serverConnectApi.get('/account/job-listings')
         dispatch({type: 'fetch_job_listings', payload: response.data})
         dispatch({type: 'reset_job_form'})
@@ -143,10 +143,11 @@ const createProfile = dispatch => async ({name, email, location, first_name, las
     }
 }
 
-const editProfile = dispatch => async ({name, email, location, first_name, last_name, phone, sector, description, skills, bio}) => {
-
+const editProfile = dispatch => async (form) => {
+    console.log("edit form", form)
     try {
-        const response = await serverConnectApi.put('/account/profile', {name, email, location, first_name, last_name, phone, sector, description, skills, bio})
+        const response = await serverConnectApi.put('/account/profile', form)
+        console.log("edit response:", response.data)
         dispatch({type: 'edit_account_profile', payload: response.data})
 
     } catch (error) {
