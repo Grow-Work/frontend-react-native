@@ -93,7 +93,7 @@ const JobListingEdit= (props) => {
             onChangeText={text => setForm({...form, preferred_skills: text})} 
             autoCapitalize="none"
             />
-            <View style={styles.listing} >
+            <View style={styles.flexRow} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {setModalVisible(!modalVisible); editJobListing({form, _id}) }}
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center"
   },
-  listing: {
+  flexRow: {
     display: 'flex',
     flexDirection: 'row'
   }
