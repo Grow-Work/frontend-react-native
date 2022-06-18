@@ -32,13 +32,19 @@ const clearErrorMessage = dispatch => () => {
     dispatch({type: 'clear_error_message'})
 }
 
-const signup = dispatch => async ({email, password, account_type}) => {
+const signup = dispatch => async ({email, password, checked}) => {
+    if (checked === true) {
+        account_type = "company"
+    } else {
+        account_type = "newb"
+    }
+    console.log("accounttype", account_type)
         try {
             const response = await serverConnectApi.post('/auth/signup', {email, password, account_type})
             await AsyncStorage.setItem('token', response.data.token)
             await AsyncStorage.setItem('accountType', response.data.account_type)
             dispatch({type: 'signin', payload: response.data.token})
-            navigate('Account')
+            navigate('Welcome')
         } catch (error) {
             dispatch({type: 'add_error', payload: "Sign up failed."})
         }

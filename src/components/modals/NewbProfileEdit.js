@@ -1,30 +1,31 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import { Input } from 'react-native-elements'
 import { List, Colors } from 'react-native-paper';
 import { ScrollView } from 'react-navigation'
 import { Context as DataContext } from "../../context/DataContext";
 
-const JobListingEdit= (props) => {
+const NewbProfileEdit= () => {
 
-    const {state, editJobListing} = useContext(DataContext)
-    const _id = props.id
-    const job = state.jobListings.find(t => t._id === _id)
+    const {state, editProfile} = useContext(DataContext)
+    const profile = state.accountProfile
 
     const initialFormValues = {
-      title: job.title,
-      company: job.company,
-      description: job.description,
-      compensation: job.compensation,
-      job_type: job.job_type,
-      location: job.location,
-      apply_link: job.apply_link,
-      required_skills: job.required_skills,
-      preferred_skills: job.preferred_skills
-  }
+      first_name: profile.first_name,
+      last_name: profile.last_name,
+      location: profile.location,
+      email: profile.email,
+      phone: profile.phone,
+      bio: profile.bio,
+      skills: profile.skills
+    }
 
     const [form, setForm] = useState(initialFormValues)
     const [modalVisible, setModalVisible] = useState(false);
+
+    useEffect(() => {
+        
+    }, [state.accountProfile])
 
   return (
     <View>
@@ -39,64 +40,53 @@ const JobListingEdit= (props) => {
         <ScrollView>
         <View>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Edit Job Listing</Text>
+            <Text style={styles.modalText}>Edit Profile</Text>
             <Input 
-            label="Job Title" 
-            value={form.title} 
-            onChangeText={text => setForm({...form, title: text})}
+            label="First Name" 
+            value={form.first_name} 
+            onChangeText={text => setForm({...form, first_name: text})}
+            autoCorrect={false}
             />
             <Input 
-            label="Company" 
-            value={form.company} 
-            onChangeText={text => setForm({...form, company: text})}
+            label="Last Name" 
+            value={form.last_name} 
+            onChangeText={text => setForm({...form, last_name: text})}
             autoCorrect={false}
             />
         <Input 
-            label="Description" 
-            value={form.description} 
-            onChangeText={text => setForm({...form, description: text})}
+            label="Bio" 
+            value={form.bio} 
+            onChangeText={text => setForm({...form, bio: text})}
             autoCorrect={false}
             />
-            <Input 
-            label="Compensation" 
-            value={form.compensation} 
-            onChangeText={text => setForm({...form, compensation: text})}
+        <Input 
+            label="Skills" 
+            value={form.skills} 
+            onChangeText={text => setForm({...form, skills: text})}
+            />
+        <Input 
+            label="Email" 
+            value={form.email} 
+            onChangeText={text => setForm({...form, email: text})}
+            autoCapitalize="none"
             autoCorrect={false}
             />
-            <Input 
-            label="Job Type" 
-            value={form.job_type} 
-            onChangeText={text => setForm({...form, job_type: text})}
+        <Input 
+            label="Phone" 
+            value={form.phone} 
+            onChangeText={text => setForm({...form, phone: text})}
+            autoCorrect={false}
             />
-            <Input 
+        <Input 
             label="Location" 
             value={form.location} 
             onChangeText={text => setForm({...form, location: text})}
             autoCorrect={false}
             />
-            <Input 
-            label="Apply Link" 
-            value={form.apply_link} 
-            onChangeText={text => setForm({...form, apply_link: text})}
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-            <Input 
-            label="Required Skills" 
-            value={form.required_skills} 
-            onChangeText={text => setForm({...form, required_skills: text})} 
-            autoCapitalize="none"
-            />
-            <Input 
-            label="Preferred Skills" 
-            value={form.preferred_skills} 
-            onChangeText={text => setForm({...form, preferred_skills: text})} 
-            autoCapitalize="none"
-            />
-            <View style={styles.flexRow} >
+            <View style={styles.listing} >
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); editJobListing({form, _id}) }}
+              onPress={() => {setModalVisible(!modalVisible); editProfile(form) }}
               >
               <Text style={styles.textStyle}>Save</Text>
             </Pressable>
@@ -155,10 +145,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center"
   },
-  flexRow: {
+  listing: {
     display: 'flex',
     flexDirection: 'row'
   }
 });
 
-export default JobListingEdit;
+export default NewbProfileEdit;

@@ -1,14 +1,11 @@
-import React, {useContext, useEffect} from 'react'
-import { NavigationEvents } from 'react-navigation'
-import { StyleSheet, Text, View } from 'react-native'
+import React, {useContext} from 'react'
+import { StyleSheet, View } from 'react-native'
 import JobListingForm from '../../components/JobListingForm'
 import { Context as DataContext } from '../../context/DataContext'
 
 const JobCreateScreen = () => {
 
     const {state, createJobListing} = useContext(DataContext)
-
-    
 
     return (
         <View style={styles.container}>

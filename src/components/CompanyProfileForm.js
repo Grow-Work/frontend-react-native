@@ -4,39 +4,66 @@ import { Text, Input, Button } from 'react-native-elements'
 import { ScrollView } from 'react-navigation'
 
 const CompanyProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
+    
+    const initialFormValues = {
+        name: "",
+        description: "",
+        location: "",
+        sector: "",
+        phone: "",
+        email: ""
+      }
 
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [location, setLocation] = useState('')
+      const [form, setForm] = useState(initialFormValues)
     
     return (
         <ScrollView>
         <Text h3 style={{marginBottom: 25}} >{header}</Text>
         <Input 
             label="Name" 
-            value={name} 
-            onChangeText={setName}
+            value={form.name} 
+            onChangeText={text => setForm({...form, name: text})}
             autoCorrect={false}
             />
         <Input 
+            label="Description" 
+            value={form.description} 
+            onChangeText={text => setForm({...form, description: text})}
+            autoCorrect={false}
+            />
+        <Input 
+            label="Sector" 
+            value={form.sector} 
+            onChangeText={text => setForm({...form, sector: text})}
+            />
+        <Input 
             label="Email" 
-            value={email} 
-            onChangeText={setEmail}
+            value={form.email} 
+            onChangeText={text => setForm({...form, email: text})}
             autoCapitalize="none"
             autoCorrect={false}
             />
         <Input 
+            label="Phone" 
+            value={form.phone} 
+            onChangeText={text => setForm({...form, phone: text})}
+            autoCorrect={false}
+            />
+        <Input 
             label="Location" 
-            value={location} 
-            onChangeText={setLocation}
+            value={form.location} 
+            onChangeText={text => setForm({...form, location: text})}
             autoCorrect={false}
             />
 
         <Text style={styles.errorMessage} >{errorMessage}</Text>
         <Button 
-            title={buttonText}
-            onPress={() => onSubmit({email, name, location})}
-        />
+                title={buttonText}
+                onPress={() => {
+                    onSubmit(form);
+                    setForm(initialFormValues)
+                }}
+            />
         </ ScrollView>
     )
 }

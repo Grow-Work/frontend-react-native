@@ -11,7 +11,7 @@ const TestScreen = () => {
     const [company, setCompany] = useState('')
     const [description, setDescription] = useState('')
     const [compensation, setCompensation] = useState('')
-    const [applyLink, setApplyLink] = useState('')
+    const [apply_link, setapply_link] = useState('')
     const [location, setLocation] = useState('')
     const [title, setTitle] = useState("")
 
@@ -64,8 +64,8 @@ const TestScreen = () => {
             />
             <Input 
             label="Apply Link" 
-            value={applyLink} 
-            onChangeText={setApplyLink} 
+            value={apply_link} 
+            onChangeText={setapply_link} 
             autoCapitalize="none"
             autoCorrect={false}
             /> */}

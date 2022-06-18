@@ -5,37 +5,75 @@ import { ScrollView } from 'react-navigation'
 
 const NewbProfileForm = ({header, errorMessage, onSubmit, buttonText}) => {
 
-    const [email, setEmail] = useState('')
-    const [first_name, setFirstName] = useState('')
-    const [location, setLocation] = useState('')
+    const initialFormValues = {
+        first_name: "",
+        last_name: "",
+        location: "",
+        email: "",
+        phone: "",
+        bio: "",
+        skills: ""
+    }
+  
+      const [form, setForm] = useState(initialFormValues)
     
     return (
         <ScrollView>
             <Text h3 style={{marginBottom: 25}} >{header}</Text>
             <Input 
                 label="First Name" 
-                value={first_name} 
-                onChangeText={setFirstName}
+                value={form.first_name} 
+                onChangeText={text => setForm({...form, first_name: text})}
+                autoCorrect={false}
+            />
+            <Input 
+                label="Last Name" 
+                value={form.last_name} 
+                onChangeText={text => setForm({...form, last_name: text})}
+                autoCorrect={false}
+            />
+            <Input 
+                label="Location" 
+                value={form.location} 
+                onChangeText={text => setForm({...form, location: text})}
                 autoCorrect={false}
             />
             <Input 
                 label="Email" 
-                value={email} 
-                onChangeText={setEmail}
+                value={form.email} 
+                onChangeText={text => setForm({...form, email: text})}
                 autoCapitalize="none"
                 autoCorrect={false}
-                />
+            />
             <Input 
-                label="Location" 
-                value={location} 
-                onChangeText={setLocation}
+                label="Phone" 
+                value={form.phone} 
+                placeholder="ex.: 555-555-5555"
+                onChangeText={text => setForm({...form, phone: text})}
+                autoCapitalize="none"
                 autoCorrect={false}
-                />
+            />
+            <Input 
+                label="Bio" 
+                value={form.bio} 
+                onChangeText={text => setForm({...form, bio: text})}
+                autoCorrect={false}
+            />
+            <Input 
+                label="Skills" 
+                value={form.skills} 
+                onChangeText={text => setForm({...form, skills: text})}
+                autoCapitalize="none"
+                autoCorrect={false}
+            />
 
             <Text style={styles.errorMessage} >{errorMessage}</Text>
             <Button 
                 title={buttonText}
-                onPress={() => onSubmit({email, first_name, location})}
+                onPress={() => {
+                    onSubmit(form);
+                    setForm(initialFormValues)
+                }}
             />
         </ ScrollView>
     )

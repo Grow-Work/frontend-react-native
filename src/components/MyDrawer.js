@@ -3,9 +3,7 @@ import React, {useContext} from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
-import ProfileEditScreen from '../screens/accountScreens/ProfileEditScreen';
 import ProfileScreen from '../screens/accountScreens/ProfileScreen';
-import ProfileCreateScreen from '../screens/accountScreens/ProfileCreateScreen';
 import AccountJobsScreen from '../screens/accountScreens/AccountJobsScreen';
 import JobCreateScreen from '../screens/accountScreens/JobCreateScreen';
 import SettingsScreen from '../screens/accountScreens/SettingsScreen';
@@ -27,7 +25,6 @@ function Drawers() {
     getAccountType()
     fetchProfile()
     fetchJobListings()
-    clearErrorMessage()
   }
 
   return (
@@ -35,8 +32,6 @@ function Drawers() {
     <NavigationEvents onWillFocus={onFocus} />
     <Drawer.Navigator useLegacyImplementation>
         <Drawer.Screen name="Profile" component={ProfileScreen} />
-        <Drawer.Screen name="Create Profile" component={ProfileCreateScreen} />
-        <Drawer.Screen name="Edit Profile" component={ProfileEditScreen} />
         <Drawer.Screen name="Your Jobs" component={AccountJobsScreen} />
         {accountType === "company"? <Drawer.Screen name="Add Job" component={JobCreateScreen} /> : null}
         <Drawer.Screen name="Settings" component={SettingsScreen} />
