@@ -1,19 +1,29 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native'
 import { NavigationEvents } from 'react-navigation'
 import { Context as DataContext } from '../context/DataContext'
 import { ListItem } from 'react-native-elements'
+import { Searchbar } from 'react-native-paper';
 
 const NewbProfileListScreen = ({navigation}) => {
 
     const {state, fetchNewbs } = useContext(DataContext)
+    const [search, setSearch] = useState('');
+
+    const onChangeSearch = query => setSearch(query);
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
          <NavigationEvents onWillFocus={fetchNewbs} />
+         <Searchbar
+            placeholder="Search"
+            onChangeText={onChangeSearch}
+            value={search}
+          />
+        <Text></Text>
          {state.newbs? 
        <FlatList
-       data={state.newbs}
+       data={state.newbs.filter((item) => item.location.toLowerCase().includes(search.toLowerCase()))}
        keyExtractor={(item) => item._id}
        renderItem={({ item }) => {
          return (

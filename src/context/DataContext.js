@@ -141,10 +141,9 @@ const createProfile = dispatch => async (form) => {
 }
 
 const editProfile = dispatch => async (form) => {
-    console.log("edit form", form)
+  
     try {
         const response = await serverConnectApi.put('/account/profile', form)
-        console.log("edit response:", response.data)
         dispatch({type: 'edit_account_profile', payload: response.data})
 
     } catch (error) {
