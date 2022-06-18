@@ -16,7 +16,7 @@ const NewbProfileListScreen = ({navigation}) => {
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
          <NavigationEvents onWillFocus={fetchNewbs} />
          <Searchbar
-            placeholder="Search"
+            placeholder="Search Skills"
             onChangeText={onChangeSearch}
             value={search}
           />
@@ -29,8 +29,7 @@ const NewbProfileListScreen = ({navigation}) => {
          return (
            <TouchableOpacity onPress={() => 
                navigation.navigate('NewbProfileDetail', { _id: item._id})
-           }
-           >
+           }>
              <ListItem>
                <ListItem.Content>
                  <ListItem.Title style={styles.header} >{item.first_name}</ListItem.Title>

@@ -16,7 +16,7 @@ const CompanyListScreen = ({navigation}) => {
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <NavigationEvents onWillFocus={fetchCompanies} />
         <Searchbar
-          placeholder="Search"
+          placeholder="Search Company Name"
           onChangeText={onChangeSearch}
           value={search}
         />

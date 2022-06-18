@@ -16,7 +16,7 @@ const JobListScreen = ({navigation}) => {
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
         <NavigationEvents onWillFocus={fetchJobs} />
         <Searchbar
-          placeholder="Search"
+          placeholder="Search Job Titles"
           onChangeText={onChangeSearch}
           value={search}
         />
